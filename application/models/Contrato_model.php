@@ -67,6 +67,14 @@ class Contrato_model extends CI_Model
         return $row;
     }
 
+    public function PlanillaMensual()
+    {
+        $this->db->select_sum('c.sueldo','Planilla_mensual');
+        $this->db->from('contrato c');
+        $this->db->where('c.Estado','Activo');
+        $this->db->where('FechaSalida >', date("Y-m-d"));
+        return $this->db->get()->row_array();
+    }
 
     // Funciones de Contratos Empleados
 

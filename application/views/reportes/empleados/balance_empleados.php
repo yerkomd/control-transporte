@@ -1,8 +1,12 @@
 <div class="row">
-    <div class="col-xs-12 text-center">
+    <div class="col-xs-12 text-left">
         <b>Balance de empleado</b><br>
-        Nombre : <?php ?> <br>
-        CI : <?php ?><br>
+        Nombre : <?php echo $empleado->Nombres . ' ' . $empleado->Apellido_p . ' ' . $empleado->Apellido_m; ?> <br>
+        CI : <?php echo $empleado->CI; ?><br>
+        Total Egresos : <?php echo number_format($Total_egresos['Total_pagos'], 2);  ?> Bs<br>
+        Total Ingresos: <?php echo number_format($Total_ingresos, 2); ?> Bs<br>
+        Balance : <?php echo number_format((float) $Total_ingresos - (float) $Total_egresos['Total_pagos'], 2); ?> Bs<br>
+        Fecha : <?php echo date('Y-m-d'); ?><br>
     </div>
 </div>
 <br>
@@ -34,6 +38,12 @@
 
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total de Egresos</td>
+                    <td><?php echo number_format($Total_egresos['Total_pagos'], 2); ?> Bs</td>
+                </tr>
+            </tfoot>
 
         </table>
         <table class="table table-bordered">
@@ -62,6 +72,12 @@
                 ?>
 
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Total de Ingresos</td>
+                    <td><?php echo number_format($Total_ingresos, 2); ?> Bs</td>
+                </tr>
+            </tfoot>
 
         </table>
 

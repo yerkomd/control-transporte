@@ -15,9 +15,9 @@
                  </div>
                  <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12">
                      <div class="tile-stats">
-                         <div class="icon"><i class="fa fa-newspaper-o"></i></div>
-                         <div class="count"><?php echo $contratos->num_rows(); ?></div>
-                         <h3>Contratos de Empleados</h3>
+                         <div class="icon"><i class="fa fa-money    "></i></div>
+                         <div class="count"><?php echo number_format((float)$Planilla_mensual['Planilla_mensual'], 2); ?> Bs</div>
+                         <h3>Planilla mensual</h3>
                          <a href="<?php echo site_url("ContratoEmpleado/ContratoEmpleado") ?>">
                              <p>Para mas informacion</p>
                          </a>
@@ -27,7 +27,7 @@
                      <div class="tile-stats">
                          <div class="icon"><i class="fa fa-money"></i></div>
                          <div class="count"><?php echo $pago->Monto; ?> Bs</div>
-                         <h3>Pagos Realizados del mes</h3>
+                         <h3>Pagos Realizados en el mes</h3>
                          <a href="<?php echo site_url("pagoEmpleados/pagoEmpleado") ?>">
                              <p>Para mas informacion</p>
                          </a>
@@ -89,7 +89,7 @@
                                                      <td><?php echo $row->TipoLicencia ?></td>
                                                      <td>
                                                          <div class='text-center'>
-                                                             <button type="button" class="btn btn-info btn-balance-empleado" data-toggle="modal" data-target="#modal-reporte" value="<?php echo $row->ID_empleado ?>"><span class="fa fa-search"></span></button>
+                                                             <button type="button" title="Reporte completo" class="btn btn-info btn-balance-empleado" data-toggle="modal" data-target="#modal-reporte" value="<?php echo $row->ID_empleado ?>"><span class="fa fa-search"></span></button>
                                                          </div>
                                                      </td>
                                                  </tr>

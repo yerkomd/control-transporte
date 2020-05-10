@@ -1,6 +1,6 @@
 <?php
 
-class Empleado
+class Empleado_funciones
 {
 
     /**
@@ -50,6 +50,34 @@ class Empleado
             $mesesTrabajadosAno = $mesesTrabajadosAno + 1;
         }
         return $IngresosEmpleado;
+    }
+    public function TotalIngreso($sueldo, $FechaIngreso, $FechaSalida)
+    {
+        //Primero se obtienen los meses trabajados del empleado
+        $fechainicio = new DateTime($FechaIngreso);
+        $fechaFin = new DateTime($FechaSalida);
+        $mesesTrabajados = $fechaFin->diff($fechainicio);
+        $mesesTrabajados = ($mesesTrabajados->y * 12) + $mesesTrabajados->m;
+        $mesesTrabajadosAno = 1;
+        $total = 0;
+        // Se calcula todos los sueldos del empleado por los meses trabajados
+        for ($i = 1; $i <= $mesesTrabajados; $i++) {
+            $mesActual =  date("m", strtotime($FechaIngreso . "+ " . $i . " month"));
+            if ($mesActual == '12') {
+                $ano = date("Y", strtotime($FechaIngreso . "+ " . $i . " month"));
+
+                $total = $total + (float) $sueldo;
+                $Finiquito = Finiquito($sueldo, $mesesTrabajadosAno);
+                $total = $total + $Finiquito;
+                $aguinaldo = Aguinaldo($sueldo, $ano, $mesesTrabajadosAno);
+                $total = $total + $aguinaldo;
+                $mesesTrabajadosAno = 0;
+            } else {
+                $total = $total + (float) $sueldo;
+            }
+            $mesesTrabajadosAno = $mesesTrabajadosAno + 1;
+        }
+        return $total;
     }
 }
 /**

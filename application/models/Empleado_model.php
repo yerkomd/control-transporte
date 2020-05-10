@@ -152,10 +152,41 @@ class Empleado_model extends CI_Model
         $this->db->join('contrato c', 'c.ID_empleado = e.ID_empleado');
         $this->db->where('e.ID_empleado', $id_empleado);
         $contrato_empleado = $this->db->get()->result_array();
-        $empleado = new Empleado();
+        $empleado = new Empleado_funciones();
         foreach ($contrato_empleado as $row) {
-            $ingreso_empleado = $empleado->CalcularIngresos($row['sueldo'], $row['FechaIngreso'], $row['FechaSalida']);
+            if ($row['FechaSalida'] <= date('Y-m-d')) {
+                $ingreso_empleado = $empleado->CalcularIngresos($row['sueldo'], $row['FechaIngreso'], $row['FechaSalida']);
+            } else {
+                $ingreso_empleado = $empleado->CalcularIngresos($row['sueldo'], $row['FechaIngreso'],  date('Y-m-d'));
+            }
         }
         return $ingreso_empleado;
+    }
+    public function obtenerTotalingresoEmpleado($id_empleado)
+    {
+        $this->db->select('*');
+        $this->db->from('empleado e');
+        $this->db->join('contrato c', 'c.ID_empleado = e.ID_empleado');
+        $this->db->where('e.ID_empleado', $id_empleado);
+        $contrato_empleado = $this->db->get()->result_array();
+        $empleado = new Empleado_funciones();
+        $Total_ingreso = 0;
+        foreach ($contrato_empleado as $row) {
+            if ($row['FechaSalida'] <= date('Y-m-d')) {
+                $Total_ingreso = $Total_ingreso + $empleado->TotalIngreso($row['sueldo'], $row['FechaIngreso'], $row['FechaSalida']);
+            } else {
+                $Total_ingreso = $Total_ingreso + $empleado->TotalIngreso($row['sueldo'], $row['FechaIngreso'],  date('Y-m-d'));
+            }
+        }
+        return $Total_ingreso;
+    }
+    public function obtenerTotalegresoEmpleado($id_empleado)
+    {
+        $this->db->select_sum('p.Monto', 'Total_pagos');
+        $this->db->from('empleado e');
+        $this->db->join('contrato c', 'c.ID_empleado = e.ID_empleado');
+        $this->db->join('pago p', 'p.ID_contrato = c.ID_contrato');
+        $this->db->where('e.ID_empleado', $id_empleado);
+        return $this->db->get()->row_array();
     }
 }

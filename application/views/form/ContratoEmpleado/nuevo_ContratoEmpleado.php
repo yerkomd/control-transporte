@@ -49,6 +49,7 @@
                       <th>Sueldo</th>
                       <th>Fecha Ingreso</th>
                       <th>Fecha Salida</th>
+                      <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>
@@ -66,7 +67,7 @@
                           <td><?php echo $row->sueldo ?></td>
                           <td><?php echo $row->FechaIngreso ?></td>
                           <td><?php echo $row->FechaSalida ?></td>
-
+                          <td><?php echo ($row->FechaSalida > date('Y-m-d') ? 'Vigente' : 'Vencido') ?></td>
 
                           <td>
                             <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
