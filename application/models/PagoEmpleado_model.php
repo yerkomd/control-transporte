@@ -64,9 +64,11 @@ class PagoEmpleado_model extends CI_Model
     }
     public function ObtenerPagosDelMesActual()
     {
-        $array = "month(Fecha) = month(now())";
+        $mes_siguietne = date('Y-m');
+        $mes_siguietne = date("Y-m", strtotime($mes_siguietne . "+ 1 month"));
         $this->db->select_sum('Monto');
-        $this->db->where($array);
+        $this->db->where('Fecha >', date("Y-m"));
+        $this->db->where('Fecha <', $mes_siguietne);
         $monto = $this->db->get('pago');
         return $monto->row();
     }

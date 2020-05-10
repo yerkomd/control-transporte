@@ -3,7 +3,7 @@ $(document).ready(function () {
 	var tabla = $('#tablaPagos').DataTable({
 		responsive: "true",
 		"order": [
-			[0, "desc"]
+			[3, "desc"]
 		],
 		"columnDefs": [{
 			"targets": -1,
@@ -111,7 +111,7 @@ $(document).ready(function () {
 		Monto = $.trim($('#Monto').val());
 		descripcion = $.trim($('#descripcion').val());
 		FechaPago = $.trim($('#FechaPago').val());
-		LimpiarFormulario();
+		$('#modal-pagoEmpleado').modal('hide');
 		if (opcion != 'editar') {
 			$.ajax({
 				type: "POST",

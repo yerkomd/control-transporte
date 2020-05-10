@@ -82,8 +82,8 @@
         <!-- DataTables -->
         <?php script('/vendors/datatables.net/js/jquery.dataTables.min.js') ?>
         <?php script('/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>
-
-
+        <!-- Jquery Print, sirve para imprimir -->
+        <?php script('/vendors/jquery-print/jquery.print.js') ?>
 
 
         <!-- Custom Theme Scripts -->
@@ -104,7 +104,6 @@
           function mayus(e) {
             e.value = e.value.toUpperCase();
           }
-         
         </script>
         <!-- sweetalert -->
         <?php script('sweetalert2.all.min.js') ?>

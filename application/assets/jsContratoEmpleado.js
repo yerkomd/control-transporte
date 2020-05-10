@@ -109,6 +109,7 @@ $(document).ready(function () {
 		sueldo = $.trim($('#sueldo').val());
 		FechaIngreso = $.trim($('#FechaIngreso').val());
 		FechaSalida = $.trim($('#FechaSalida').val());
+		$('#modal-contratoEmpleado').modal('hide');
 		if (opcion != 'editar') {
 			$.ajax({
 				type: "POST",
