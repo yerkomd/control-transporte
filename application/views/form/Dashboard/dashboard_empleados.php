@@ -16,7 +16,7 @@
                  <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12">
                      <div class="tile-stats">
                          <div class="icon"><i class="fa fa-money    "></i></div>
-                         <div class="count"><?php echo number_format((float)$Planilla_mensual['Planilla_mensual'], 2); ?> Bs</div>
+                         <div class="count"><?php echo (date('m') ==  12) ? number_format((float) $Planilla_mensual['Planilla_mensual'] * 2, 2) : number_format((float) $Planilla_mensual['Planilla_mensual'], 2)  ?> Bs</div>
                          <h3>Planilla mensual</h3>
                          <a href="<?php echo site_url("ContratoEmpleado/ContratoEmpleado") ?>">
                              <p>Para mas informacion</p>

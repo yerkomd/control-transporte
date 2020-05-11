@@ -133,7 +133,10 @@ $(document).ready(function () {
 						sueldo = respuesta['datos']['sueldo'];
 						fechain = respuesta['datos']['fechain'];
 						fechafin = respuesta['datos']['fechafin'];
-						tabla.row.add([id_contrato, CI, nombres, Apellido_p, Apellido_m, descripcion, sueldo, fechain, fechafin]).draw();
+						d = new Date();
+						fechaActual =(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+						estado = respuesta['datos']['fechafin'] > fechaActual ? 'Vigente' : 'Vencido';
+						tabla.row.add([id_contrato, CI, nombres, Apellido_p, Apellido_m, descripcion, sueldo, fechain, fechafin, estado]).draw();
 						$('#modal-contratoEmpleado').modal('hide');
 						LimpiarFormulario();
 						swal({
@@ -175,7 +178,10 @@ $(document).ready(function () {
 						sueldo = respuesta['datos']['sueldo'];
 						fechain = respuesta['datos']['fechain'];
 						fechafin = respuesta['datos']['fechafin'];
-						tabla.row(fila).data([id_contrato, CI, nombres, Apellido_p, Apellido_m, descripcion, sueldo, fechain, fechafin]).draw();
+						d = new Date();
+						fechaActual =(d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate());
+						estado = respuesta['datos']['fechafin'] > fechaActual ? 'Vigente' : 'Vencido';
+						tabla.row(fila).data([id_contrato, CI, nombres, Apellido_p, Apellido_m, descripcion, sueldo, fechain, fechafin, estado]).draw();
 						LimpiarFormulario();
 						opcion = '';
 						swal({
