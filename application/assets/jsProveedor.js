@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var opcion = '';
+	opcion = '';
 	var tabla = $('#tablaProveedor').DataTable({
 		responsive: "true",
 		"order": [
@@ -70,7 +70,7 @@ $(document).ready(function () {
 		telefono_02 = $.trim($('#telefono_02').val());
 		calificacion = $.trim($('#calificacion').val());
 		descripcion = $.trim($('#descripcion').val());
-		LimpiarFormulario();
+		$('#modal-proveedor').modal('hide');
 
 		if (opcion != 'editar') {
 			$.ajax({

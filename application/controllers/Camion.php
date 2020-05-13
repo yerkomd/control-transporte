@@ -55,7 +55,7 @@ class Camion extends BaseController
                         'Modelo' => $Modelo,
                         'Color' => $Color,
                         'Capacidad' => $Capacidad,
-                        'N_senasag' => $camion_ingresado['N_senasag'],
+                        'N_senasag' => $camion_ingresado['N_Senasag'],
                         'Kilometraje' => $Kilometraje,
 
                     ),

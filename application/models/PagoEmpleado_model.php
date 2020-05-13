@@ -11,6 +11,7 @@ class PagoEmpleado_model extends CI_Model
         $this->db->join('empleado', 'empleado.ID_empleado = contrato.ID_empleado');
         $this->db->join('tipocontrato', 'contrato.ID_tipocontrato = tipocontrato.ID_tipocontrato');
         $this->db->join('persona', 'persona.ID_persona = empleado.ID_persona');
+        $this->db->limit(1000);
         $this->db->where('contrato.Estado', 'Activo');
         $this->db->where('empleado.Estado', 'Activo');
 
