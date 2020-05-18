@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Talleres o ferreterias <small>-</small></h2>
+                    <h2>cuentas de camiones <small>-</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -28,7 +28,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Tabla de talleres o ferreterias</h2>
+                                <h2>Tabla de cuentas de camiones</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -84,7 +84,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Formulario talleres o ferreterias</h4>
+                <h4 class="modal-title">Formulario cuentas de camiones</h4>
             </div>
             <form action="" id="formtalleres">
                 <div class="modal-body">
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="NombreTaller">Nombre taller o ferreteria<span class="required">*</span>
+                        <label class="control-label" for="NombreTaller">Nombre cuenta<span class="required">*</span>
                         </label>
                         <div class="">
                             <input type="text" id="NombreTaller" maxlength="100" name="NombreTaller" required="required" class="form-control col-md-7 col-xs-12">

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var opcion = '';
+	opcion = '';
 	var tabla = $('#tablaPredio').DataTable({
 		responsive: "true",
 		"order": [
@@ -202,6 +202,7 @@ $(document).ready(function () {
 
 	})
 });
+
 function LimpiarFormulario() {
 	$('#modal-predio').modal('hide');
 	$('#formpredio').trigger('reset');

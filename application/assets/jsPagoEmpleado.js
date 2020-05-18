@@ -132,6 +132,7 @@ $(document).ready(function () {
 						Monto = respuesta['datos']['Monto'];
 						FechaPago = respuesta['datos']['FechaPago'];
 						tabla.row.add([id_pago, nombres, Apellido_p, FechaPago, descripcion, Monto]).draw();
+						LimpiarFormulario();
 						swal({
 							title: 'Guardar',
 							text: respuesta['message'],
@@ -164,6 +165,7 @@ $(document).ready(function () {
 						nombres = fila.find('td:eq(1)').text();
 						Apellido_p = fila.find('td:eq(2)').text();
 						tabla.row(fila).data([ID_pago, nombres, Apellido_p, FechaPago, descripcion, Monto]).draw();
+						LimpiarFormulario();
 						swal({
 							title: 'Editado',
 							text: respuesta['mensage'],

@@ -6,6 +6,7 @@ class Proveedor_model extends CI_Model
         $this->db->select('*');
         $this->db->from('proveedor');
         $this->db->where('Estado','1');
+        $this->db->order_by('Nombres');
         return $this->db->get()->result();
     }
     public function BuscarCI($CI)
