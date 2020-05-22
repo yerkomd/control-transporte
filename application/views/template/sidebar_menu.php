@@ -15,6 +15,7 @@
                       <li><a href="<?php echo site_url("Contrato/tipocontrato") ?>">Tipos de Contratos Empleado</a></li>
                       <li><a href="<?php echo site_url("Empleado/index") ?>">Empleados</a></li>
                       <li><a href="<?php echo site_url("ContratoEmpleado/ContratoEmpleado") ?>">Contrato Empleados</a></li>
+                      <li><a href="<?php echo site_url("CuentaEmpresa/cuentaEmpresa") ?>">Cuentas y cajas de la empresa</a></li>
 
                     </ul>
                   </li>

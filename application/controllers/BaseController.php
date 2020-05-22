@@ -86,7 +86,7 @@ class BaseController extends CI_Controller {
 
 					//Añade los datos a la session
 					$this->session->set_userdata('logged_in', $session_data);
-					$this->loadView('inicio','inicio');
+					redirect(base_url() . "index.php/Inicio");
 				}		
 			}
 
