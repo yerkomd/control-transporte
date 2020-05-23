@@ -44,6 +44,7 @@ class Mantenimiento_model extends CI_Model
         $this->db->join('taller t', 't.ID_taller = dm.ID_taller');
         $this->db->join('categoria_mantenimiento cm', 'cm.ID_categoria_mantenimiento = dm.ID_categoria_mantenimiento');
         $this->db->where('dm.ID_mantenimiento', $ID_mantenimiento);
+        $this->db->order_by('dm.Fecha');
         return $this->db->get()->result();
     }
     public function eliminarDetalleMantenimiento($ID_mantenimiento)

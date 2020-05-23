@@ -32,23 +32,20 @@ $(document).ready(function () {
 	});
 	$(document).on('click', '#btn-editar', function () {
 		fila = $(this).closest('tr');
-		ID_pago_cuentas = parseInt(fila.find('td:eq(0)').text());
-		$('.modal-title').text('Formulario transacciones de cliente EDITAR');
+		ID_cuenta_empresa = parseInt(fila.find('td:eq(0)').text());
+		$('.modal-title').text('Formulario cuentas o cajas de la empresa EDITAR');
 		$('#modal-cuentaEmpresa').modal('show');
 		$.ajax({
 			type: "POST",
-			url: base_url + "/Pago_cuentas/obtenerPagoCliente",
+			url: base_url + "/CuentaEmpresa/obtenerCuentaEmpresa",
 			data: {
-				ID_pago_cuentas: ID_pago_cuentas
+				ID_cuenta_empresa: ID_cuenta_empresa
 			},
 			dataType: "json",
 			success: function (respuesta) {
-				$("#ID_Cliente option[value=" + respuesta['ID_Cliente'] + "]").attr("selected", true);
-				$('#Fecha').val(respuesta['fecha']);
+				$("#ID_tipo_cuenta option[value=" + respuesta['ID_tipo_cuenta'] + "]").attr("selected", true);
+				$('#Nombre_cuenta').val(respuesta['Nombre_cuenta']);
 				$('#Descripcion').text(respuesta['Descripcion']);
-				$('#Debe').val(respuesta['Debe']);
-				$('#Haber').val(respuesta['Haber']);
-
 			}
 		});
 		opcion = 'editar';
@@ -59,7 +56,6 @@ $(document).ready(function () {
 		ID_tipo_cuenta = $.trim($('#ID_tipo_cuenta').val());
 		Nombre_cuenta = $.trim($('#Nombre_cuenta').val());
 		Descripcion = $.trim($('#Descripcion').val());
-
 		$('#modal-cuentaEmpresa').modal('hide');
 
 		if (opcion != 'editar') {
@@ -79,7 +75,7 @@ $(document).ready(function () {
 						Nombre_cuenta = respuesta['datos']['Nombre_cuenta'];
 						balance = respuesta['datos']['balance'];
 						Descripcion = respuesta['datos']['Descripcion'];
-						tabla.row.add([ID_cuenta_empresa, Nombre, Nombre_cuenta, Descripcion, balance]).draw();
+						tabla.row.add([ID_cuenta_empresa, nombre, Nombre_cuenta, Descripcion, balance]).draw();
 						LimpiarFormulario();
 						swal({
 							title: 'Guardar',
@@ -101,35 +97,31 @@ $(document).ready(function () {
 		} else {
 			$.ajax({
 				type: "POST",
-				url: base_url + "/Pago_cuentas/editarCuentaEmpresa",
+				url: base_url + "/CuentaEmpresa/editarCuentaEmpresa",
 				data: {
-					ID_pago_cuentas: ID_pago_cuentas,
-					ID_Cliente: ID_Cliente,
-					Fecha: Fecha,
+					ID_cuenta_empresa: ID_cuenta_empresa,
+					ID_tipo_cuenta: ID_tipo_cuenta,
+					Nombre_cuenta: Nombre_cuenta,
 					Descripcion: Descripcion,
-					Debe: Debe,
-					Haber: Haber,
 				},
 				dataType: "json",
 				success: function (respuesta) {
 					if (respuesta['respuesta'] === 'Exitoso') {
 
-						Fecha = respuesta['datos']['Fecha'];
-						Nombre = respuesta['datos']['Nombre'];
-						CI = respuesta['datos']['CI'];
-						Telefono = respuesta['datos']['Telefono_01'];
+						ID_cuenta_empresa = respuesta['datos']['ID_cuenta_empresa'];
+						nombre = respuesta['datos']['nombre'];
+						Nombre_cuenta = respuesta['datos']['Nombre_cuenta'];
+						balance = respuesta['datos']['balance'];
 						Descripcion = respuesta['datos']['Descripcion'];
-						Debe = respuesta['datos']['Debe'];
-						Haber = respuesta['datos']['Haber'];
 						LimpiarFormulario();
-						tabla.row(fila).data([ID_pago_cuentas, Fecha, Nombre, CI, Telefono, Descripcion, Debe, Haber]).draw();
+						tabla.row(fila).data([ID_cuenta_empresa, nombre, Nombre_cuenta, Descripcion, balance]).draw();
 
 						swal({
 							title: 'Editado',
 							text: respuesta['message'],
 							type: 'success'
 						});
-						$('#formEmpleados').trigger('reset');
+
 					} else {
 						LimpiarFormulario();
 						swal({
@@ -160,7 +152,7 @@ $(document).ready(function () {
 				fila = $(this).closest('tr');
 				id = parseInt(fila.find('td:eq(0)').text());
 				$.ajax({
-					url: base_url + "/Pago_cuentas/eliminarPago/" + id,
+					url: base_url + "/CuentaEmpresa/eliminarCuentaEmpresa/" + id,
 					type: 'POST',
 					success: function (respuesta) {
 

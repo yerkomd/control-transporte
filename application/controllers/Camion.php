@@ -174,7 +174,7 @@ class Camion extends BaseController
         $this->form_validation->set_rules('NombresChofer', 'NombresChofer', 'trim|xss_clean');
         $this->form_validation->set_rules('CI', 'CI', 'trim|xss_clean');
         $this->form_validation->set_rules('Telefono', 'Telefono', 'trim|xss_clean');
-        $this->form_validation->set_rules('Placa', 'Placa', 'trim|xss_clean|is_unique[camion.N_Placa]');
+        $this->form_validation->set_rules('Placa', 'Placa', 'trim|xss_clean');
         $this->form_validation->set_rules('Marca', 'Marca', 'trim|xss_clean');
         $this->form_validation->set_rules('Color', 'Color', 'trim|xss_clean');
         $this->form_validation->set_rules('Capacidad', 'Capacidad', 'trim|xss_clean');
@@ -242,18 +242,13 @@ class Camion extends BaseController
         $Capacidad = $this->input->post('Capacidad');
         $N_senasag = $this->input->post('N_senasag');
 
-        $camion_actual = $this->Camion_model->obtenerCamionProveedor($ID_camion);
-        if ($Placa == $camion_actual['N_Placa']) {
-            $is_unique = '';
-        } else {
-            $is_unique = '|is_unique[camion.N_Placa]';
-        }
+
         $this->form_validation->set_rules('ID_camion', 'ID_camion', 'trim|xss_clean');
         $this->form_validation->set_rules('ID_proveedor', 'ID_proveedor', 'trim|xss_clean');
         $this->form_validation->set_rules('NombresChofer', 'NombresChofer', 'trim|xss_clean');
         $this->form_validation->set_rules('CI', 'CI', 'trim|xss_clean');
         $this->form_validation->set_rules('Telefono', 'Telefono', 'trim|xss_clean');
-        $this->form_validation->set_rules('Placa', 'Placa', 'trim|xss_clean' . $is_unique);
+        $this->form_validation->set_rules('Placa', 'Placa', 'trim|xss_clean');
         $this->form_validation->set_rules('Marca', 'Marca', 'trim|xss_clean');
         $this->form_validation->set_rules('Color', 'Color', 'trim|xss_clean');
         $this->form_validation->set_rules('Capacidad', 'Capacidad', 'trim|xss_clean');

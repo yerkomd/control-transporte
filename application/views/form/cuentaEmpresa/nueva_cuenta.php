@@ -61,7 +61,7 @@
                                                 <td><?php echo $row['nombre'] ?></td>
                                                 <td><?php echo $row['Nombre_cuenta'] ?></td>
                                                 <td><?php echo $row['Descripcion'] ?></td>
-                                                <td><?php echo number_format($row['Balance'], 2)  ?></td>
+                                                <td><?php echo number_format($row['balance'], 2)  ?></td>
                                                 <td>
                                                     <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
                                                     <button class="btn btn-danger btn-sm" id="btn-borrar"><i class="fas fa-trash-alt"></i> Borrar</button>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Nombre_cuenta">Descripcion de la cuenta <span class="required">*</span>
+                        <label class="control-label" for="Descripcion">Descripcion de la cuenta <span class="required">*</span>
                         </label>
                         <div class="">
                         <textarea name="Descripcion" id="Descripcion" class="form-control" rows="3" placeholder="Dirección" required="required"></textarea>
