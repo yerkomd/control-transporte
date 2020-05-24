@@ -62,4 +62,12 @@ class Reportes_model extends CI_Model
         $Balance = $BalancePagoCuentas['Balance'] + $IngresoTrasnporte['IngresoTransporte'];
         return (float) $Balance;
     }
+    public function BalanceCuentasEmpresa()
+    {
+        $this->db->select('(sum(Haber) - sum(Debe)) as BalanceCuenta');
+        $this->db->from('pago_cuentas');
+        $this->db->where('ID_cuenta_empresa !=', 'NULL');
+        $BalanceCuentas = $this->db->get()->row_array();
+        return (float) $BalanceCuentas['BalanceCuenta'];
+    }
 }

@@ -8,7 +8,7 @@ class Cuenta_empresa_model extends CI_Model
     }
     public function obtenerCuentasEmpresa()
     {
-        $this->db->select('ce.*, tc.nombre, (sum(Debe) - sum(Haber)) as balance');
+        $this->db->select('ce.*, tc.nombre, (sum(Haber) - sum(Debe)) as balance');
         $this->db->from('cuenta_empresa ce');
         $this->db->join('tipo_cuenta tc', 'tc.ID_tipo_cuenta = ce.ID_tipo_cuenta');
         $this->db->join('pago_cuentas pc', 'pc.ID_cuenta_empresa = ce.ID_cuenta_empresa', 'left');
@@ -39,7 +39,7 @@ class Cuenta_empresa_model extends CI_Model
     }
     public function obtenerCuentaEmpresa($ID_cuenta_empresa)
     {
-        $this->db->select('ce.*, tc.nombre, (sum(Debe) - sum(Haber)) as balance');
+        $this->db->select('ce.*, tc.nombre, (sum(Haber) - sum(Debe)) as balance');
         $this->db->from('cuenta_empresa ce');
         $this->db->join('tipo_cuenta tc', 'tc.ID_tipo_cuenta = ce.ID_tipo_cuenta');
         $this->db->join('pago_cuentas pc', 'pc.ID_cuenta_empresa = ce.ID_cuenta_empresa', 'left');

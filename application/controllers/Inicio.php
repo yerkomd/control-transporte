@@ -36,7 +36,8 @@ class Inicio extends BaseController
 		$datos['comision'] = $this->Reportes_model->ingreso_comisiones_gestion_actual();
 		$datos['CuentasPorPagar'] = $this->Reportes_model->CuentasPorPagar();
 		$datos['CuentasPorCobrar'] = $this->Reportes_model->CuentasPorCobrar();
-		$datos['Balance'] = (float) $datos['CuentasPorCobrar'] - (float) $datos['CuentasPorPagar'];
+		$datos['BalanceCuentas'] = $this->Reportes_model->BalanceCuentasEmpresa();
+		$datos['Balance'] = (float) $datos['BalanceCuentas'] + (float) $datos['CuentasPorCobrar'] - (float) $datos['CuentasPorPagar'];
 		$this->loadView('inicio', 'inicio', $datos);
 	}
 }
