@@ -89,7 +89,7 @@ class CuentaEmpresa extends BaseController
                         'Descripcion' => $cuenta_editada['Descripcion'],
 
                     ),
-                    'message' => 'Se guardo correctamente',
+                    'message' => 'Se edito correctamente',
                 );
             }
         } catch (\Throwable $th) {

@@ -372,6 +372,120 @@ class Pago_cuentas extends BaseController
 
         echo json_encode($respuesta);
     }
-   
 
+    //Funciones de movimiento de caja de empresa
+    public function movimientoCajaEmpresa()
+    {
+        $datos['cuenta_empresa'] = $this->Cuenta_empresa_model->obtenerCuentasEmpresa();
+        $datos['movimiento_cuentaEmpresa'] = $this->Pagos_cuentas_model->obtenerMovimientosCuentaEmpresa();
+        $this->loadView('MovimientoCuentaEmpresa', '/form/pagos/movimiento_cuentaEmpresa', $datos);
+    }
+    public function ingresarmovimientoCajaEmpresa()
+    {
+        $this->form_validation->set_rules('ID_cuenta_empresa', 'ID_cuenta_empresa', 'trim|xss_clean|required');
+        $this->form_validation->set_rules('Fecha', 'Fecha', 'trim|xss_clean|required');
+        $this->form_validation->set_rules('Descripcion', 'Descripcion', 'trim|xss_clean');
+        $this->form_validation->set_rules('Debe', 'Debe', 'trim|xss_clean');
+        $this->form_validation->set_rules('Haber', 'Haber', 'trim|xss_clean');
+
+        try {
+            if ($this->form_validation->run() === false) {
+
+                $respuesta = array(
+                    'respuesta' => 'Error',
+                    'message' => 'Ocurrio un problema al validar los datos',
+                );
+            } else {
+
+                $ID_cuenta_empresa = $this->input->post('ID_cuenta_empresa');
+                $Fecha = $this->input->post('Fecha');
+                $Descripcion = $this->input->post('Descripcion');
+                $Debe = $this->input->post('Debe');
+                $Haber = $this->input->post('Haber');
+
+
+                $ID_pago_cuentas = $this->Pagos_cuentas_model->ingresarMovimientoEmpresa($ID_cuenta_empresa, $Fecha, $Descripcion, $Debe, $Haber);
+                $Pago_ingresado = $this->Pagos_cuentas_model->obtenerMovimientoEmpresa($ID_pago_cuentas);
+
+                $respuesta = array(
+                    'respuesta' => 'Exitoso',
+                    'datos' => array(
+                        'ID_pago_cuentas' => $ID_pago_cuentas,
+                        'Fecha' => $Pago_ingresado['fecha'],
+                        'Nombre' => $Pago_ingresado['Nombre_cuenta'],
+                        'DescripcionCuenta' => $Pago_ingresado['DescripcionCuenta'],
+                        'Descripcion' => $Pago_ingresado['Descripcion'],
+                        'Debe' => $Pago_ingresado['Debe'],
+                        'Haber' => $Pago_ingresado['Haber'],
+                    ),
+                    'message' => 'Se guardo correctamente',
+                );
+            }
+        } catch (\Throwable $th) {
+            $respuesta = array(
+                'tipo' => 'Error',
+                'message' => $th,
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
+    public function obtenermovimientoCajaEmpresa()
+    {
+        $ID_pago_cuentas = $this->input->post('ID_pago_cuentas');
+        $Movimiento_cajaEmpresa = $this->Pagos_cuentas_model->obtenerMovimientoEmpresa($ID_pago_cuentas);
+        echo json_encode($Movimiento_cajaEmpresa);
+    }
+    public function editarmovimientoCajaEmpresa()
+    {
+        $this->form_validation->set_rules('ID_pago_cuentas', 'ID_pago_cuentas', 'trim|xss_clean|required');
+        $this->form_validation->set_rules('ID_cuenta_empresa', 'ID_cuenta_empresa', 'trim|xss_clean|required');
+        $this->form_validation->set_rules('Fecha', 'Fecha', 'trim|xss_clean|required');
+        $this->form_validation->set_rules('Descripcion', 'Descripcion', 'trim|xss_clean');
+        $this->form_validation->set_rules('Debe', 'Debe', 'trim|xss_clean');
+        $this->form_validation->set_rules('Haber', 'Haber', 'trim|xss_clean');
+
+        try {
+            if ($this->form_validation->run() === false) {
+
+                $respuesta = array(
+                    'respuesta' => 'Error',
+                    'message' => 'Ocurrio un problema al validar los datos',
+                );
+            } else {
+
+                $ID_pago_cuentas = $this->input->post('ID_pago_cuentas');
+                $ID_cuenta_empresa = $this->input->post('ID_cuenta_empresa');
+                $Fecha = $this->input->post('Fecha');
+                $Descripcion = $this->input->post('Descripcion');
+                $Debe = $this->input->post('Debe');
+                $Haber = $this->input->post('Haber');
+
+
+                $this->Pagos_cuentas_model->editarMovimientoEmpresa($ID_pago_cuentas,$ID_cuenta_empresa, $Fecha, $Descripcion, $Debe, $Haber);
+                $Pago_ingresado = $this->Pagos_cuentas_model->obtenerMovimientoEmpresa($ID_pago_cuentas);
+
+                $respuesta = array(
+                    'respuesta' => 'Exitoso',
+                    'datos' => array(
+                        'ID_pago_cuentas' => $ID_pago_cuentas,
+                        'Fecha' => $Pago_ingresado['fecha'],
+                        'Nombre' => $Pago_ingresado['Nombre_cuenta'],
+                        'DescripcionCuenta' => $Pago_ingresado['DescripcionCuenta'],
+                        'Descripcion' => $Pago_ingresado['Descripcion'],
+                        'Debe' => $Pago_ingresado['Debe'],
+                        'Haber' => $Pago_ingresado['Haber'],
+                    ),
+                    'message' => 'Se guardo correctamente',
+                );
+            }
+        } catch (\Throwable $th) {
+            $respuesta = array(
+                'tipo' => 'Error',
+                'message' => $th,
+            );
+        }
+
+        echo json_encode($respuesta);
+    }
 }
