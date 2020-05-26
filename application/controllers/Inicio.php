@@ -38,6 +38,7 @@ class Inicio extends BaseController
 		$datos['CuentasPorCobrar'] = $this->Reportes_model->CuentasPorCobrar();
 		$datos['BalanceCuentas'] = $this->Reportes_model->BalanceCuentasEmpresa();
 		$datos['Balance'] = (float) $datos['BalanceCuentas'] + (float) $datos['CuentasPorCobrar'] - (float) $datos['CuentasPorPagar'];
+		$datos['DetalleBalanceCliente'] = $this->Reportes_model->obtenerDetalleBanaceClientes();
 		$this->loadView('inicio', 'inicio', $datos);
 	}
 }
