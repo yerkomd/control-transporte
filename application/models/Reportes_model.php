@@ -70,10 +70,16 @@ class Reportes_model extends CI_Model
         $BalanceCuentas = $this->db->get()->row_array();
         return (float) $BalanceCuentas['BalanceCuenta'];
     }
-    public function obtenerDetalleBanaceClientes()
+    public function obtenerDetalleBalanceClientes()
     {
         $this->db->select('b.ID_cliente, b.Nombre, b.Apellidos, (b.transporte + b.Balancepago) as balance');
         $this->db->from('balance_cliente b');
+        return $this->db->get()->result_array();
+    }
+    public function obtenerDetalleBalanceProveedores()
+    {
+        $this->db->select('ID_proveedor, CI, Nombres, Apellidos, Telefono_01, Telefono_02, (CuentasPagar + Transporte) as balance');
+        $this->db->from('balance_proveedores');
         return $this->db->get()->result_array();
     }
 }

@@ -53,7 +53,8 @@
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="tablaProdcutos" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Tabla de balance de clientes</a>
                 </li>
-
+                <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Tabla de balance de proveedores</a>
+                </li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
@@ -70,17 +71,60 @@
                     <tbody>
                       <?php
                       if (isset($DetalleBalanceCliente)) {
-                        foreach ($DetalleBalanceCliente as $row) { ?>
-                          <tr>
-                            <td><?php echo $row['ID_cliente'] ?></td>
-                            <td><?php echo $row['Nombre'] ?></td>
-                            <td><?php echo $row['Apellidos'] ?></td>
-                            <td><?php echo $row['balance'] ?></td>
-                            <td>
-                              <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
-                            </td>
-                          </tr>
+                        foreach ($DetalleBalanceCliente as $row) {
+                          if ($row['balance'] != 0) { ?>
+                            <tr>
+                              <td><?php echo $row['ID_cliente'] ?></td>
+                              <td><?php echo $row['Nombre'] ?></td>
+                              <td><?php echo $row['Apellidos'] ?></td>
+                              <td><?php echo $row['balance'] ?></td>
+                              <td>
+                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                              </td>
+                            </tr>
                       <?php }
+                        }
+                      }
+                      ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ID cliente</th>
+                        <th>Nombres</th>
+                        <th style="text-align:right">Total de general:</th>
+                        <th colspan="2" style="text-align: left"></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <!-- Tabla responsiva-->
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                  <table class="table table-bordered" id="tablaDetalleProveedores">
+                    <thead>
+                      <tr>
+                        <th>ID proveedor</th>
+                        <th>Nombres</th>
+                        <th>Apellidos </th>
+                        <th>Balance</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      if (isset($DetalleBalanceProveedores)) {
+                        foreach ($DetalleBalanceProveedores as $row) {
+                          if ($row['balance'] != 0) { ?>
+                            <tr>
+                              <td><?php echo $row['ID_proveedor'] ?></td>
+                              <td><?php echo $row['Nombres'] ?></td>
+                              <td><?php echo $row['Apellidos'] ?></td>
+                              <td><?php echo $row['balance'] ?></td>
+                              <td>
+                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                              </td>
+                            </tr>
+                      <?php }
+                        }
                       }
                       ?>
                     </tbody>
