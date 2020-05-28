@@ -6,32 +6,44 @@
     <div class="row tile_count">
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-truck"></i>Balance de camiones</span>
-        <div class="count green"><?php echo number_format($balance_camiones, 2)  ?> BS</div>
+        <div class="count green"><?php echo number_format($balance_camiones, 2)  ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom">Balance de los camiones del año actual</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-money"></i> Ingreso por comisión</span>
-        <div class="count green"><?php echo number_format($comision['comision'], 2)  ?> BS</div>
+        <div class="count green"><?php echo number_format($comision['comision'], 2)  ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom"> Ingreso por comision del año actual</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-money"></i> Liquidez</span>
-        <div class="count green"><?php echo number_format($BalanceCuentas, 2)  ?> BS</div>
+        <div class="count green"><?php echo number_format($BalanceCuentas, 2)  ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom">Liquides de las cuentas de la empresa</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-money"></i> Cuentas por cobrar</span>
-        <div class="count green"><?php echo number_format($CuentasPorCobrar, 2)  ?> BS</div>
+        <div class="count <?php echo ($CuentasPorCobrar >= 0) ? 'green' : 'red' ?>"><?php echo number_format($CuentasPorCobrar, 2)  ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom"> Balance de las cuentas de los clientes</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-money"></i> Cuentas por pagar</span>
-        <div class="count red"><?php echo number_format($CuentasPorPagar, 2) ?> Bs</div>
+        <div class="count red"><?php echo number_format($CuentasPorPagar, 2) ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom"> Balance de las cuentas por pagar</span>
       </div>
       <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top"><i class="fa fa-money"></i> Balance</span>
-        <div class="count <?php echo ($Balance >= 0) ? 'green' : 'red' ?>"><?php echo number_format(abs($Balance), 2) ?> Bs</div>
+        <div class="count <?php echo ($Balance >= 0) ? 'green' : 'red' ?>"><?php echo number_format(abs($Balance), 2) ?>
+          <small>Bs</small>
+        </div>
         <span class="count_bottom"> Balance de la empresa</span>
       </div>
     </div>
@@ -39,7 +51,30 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Tablas de reportes</h2>
+            <h2>Grafico movimiento </h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <select name="year" id="year" class="form-control">
+                <?php foreach ($year as $row) : ?>
+                  <option value="<?php echo $row['year'] ?>"><?php echo $row['year'] ?></option>
+                <?php endforeach; ?>
+              </select>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="GraficoMovimiento" id="GraficoMovimiento">
+              <canvas id="GraficoM" height="200" width="700"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Tablas de balances</h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -48,12 +83,14 @@
             </ul>
             <div class="clearfix"></div>
           </div>
-          <div class="x_content" style="display:none">
+          <div class="x_content" >
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="tablaProdcutos" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Tabla de balance de clientes</a>
                 </li>
                 <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Tabla de balance de proveedores</a>
+                </li>
+                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Tabla de balance de cuentas de camiones</a>
                 </li>
               </ul>
               <div id="myTabContent" class="tab-content">
@@ -118,6 +155,47 @@
                               <td><?php echo $row['ID_proveedor'] ?></td>
                               <td><?php echo $row['Nombres'] ?></td>
                               <td><?php echo $row['Apellidos'] ?></td>
+                              <td><?php echo $row['balance'] ?></td>
+                              <td>
+                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                              </td>
+                            </tr>
+                      <?php }
+                        }
+                      }
+                      ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ID cliente</th>
+                        <th>Nombres</th>
+                        <th style="text-align:right">Total de general:</th>
+                        <th colspan="2" style="text-align: left"></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <!-- Tabla responsiva-->
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                  <table class="table table-bordered" id="tablaDetalleTaller">
+                    <thead>
+                      <tr>
+                        <th>ID cuenta</th>
+                        <th>Nombre cuenta</th>
+                        <th>Departamento </th>
+                        <th>Balance</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      if (isset($DetalleBalanceTaller)) {
+                        foreach ($DetalleBalanceTaller as $row) {
+                          if ($row['balance'] != 0) { ?>
+                            <tr>
+                              <td><?php echo $row['ID_taller'] ?></td>
+                              <td><?php echo $row['NombreTaller'] ?></td>
+                              <td><?php echo $row['Departamento'] ?></td>
                               <td><?php echo $row['balance'] ?></td>
                               <td>
                                 <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>

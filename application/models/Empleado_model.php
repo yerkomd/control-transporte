@@ -141,6 +141,7 @@ class Empleado_model extends CI_Model
         $this->db->from('empleado e');
         $this->db->join('contrato c', 'c.ID_empleado = e.ID_empleado');
         $this->db->join('pago p', 'p.ID_contrato = c.ID_contrato');
+        $this->db->order_by('p.Fecha');
         $this->db->where('e.ID_empleado', $id_empleado);
 
         return $this->db->get()->result_array();

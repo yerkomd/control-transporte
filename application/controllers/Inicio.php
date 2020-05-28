@@ -40,6 +40,16 @@ class Inicio extends BaseController
 		$datos['Balance'] = (float) $datos['BalanceCuentas'] + (float) $datos['CuentasPorCobrar'] - (float) $datos['CuentasPorPagar'];
 		$datos['DetalleBalanceCliente'] = $this->Reportes_model->obtenerDetalleBalanceClientes();
 		$datos['DetalleBalanceProveedores'] = $this->Reportes_model->obtenerDetalleBalanceProveedores();
+		$datos['DetalleBalanceTaller'] = $this->Reportes_model->obtenerDetalleBalanceTaller();
+		$datos['year'] = $this->Reportes_model->obtenerAnosTrasnporte();
 		$this->loadView('inicio', 'inicio', $datos);
+	}
+	public function graficoMovimiento()
+	{
+		$year = $this->input->post('year');
+		$datos['MovimientoGeneralTransportePorMes'] = $this->Reportes_model->MovimientoGeneralTransportePorMes($year);
+		$datos['MovimientoGeneralTransporteCamionesEmpresa'] = $this->Reportes_model->MovimientoGeneralTransporteCamionesEmpresa($year);
+
+		echo json_encode($datos);
 	}
 }

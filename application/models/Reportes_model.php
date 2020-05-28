@@ -82,4 +82,79 @@ class Reportes_model extends CI_Model
         $this->db->from('balance_proveedores');
         return $this->db->get()->result_array();
     }
+    public function obtenerDetalleBalanceTaller()
+    {
+        $this->db->select('ID_taller, NombreTaller, Departamento, (CuentasPagar + GastosMantenimiento) as balance');
+        $this->db->from('balance_taller');
+        return $this->db->get()->result_array();
+    }
+    public function obtenerAnosTrasnporte()
+    {
+        $this->db->select('YEAR(Fecha) as year');
+        $this->db->from('transporte');
+        $this->db->group_by('year');
+        $this->db->order_by('year', 'DESC');
+        return $this->db->get()->result_array();
+    }
+    public function MovimientoGeneralTransportePorMes($year)
+    {
+        $TrasnporteTotal = array(
+            0 => 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+            8 => 0,
+            9 => 0,
+            10 => 0,
+            11 => 0,
+        );
+        $this->db->select('sum(Total) as Total, month(Fecha) as mes');
+        $this->db->from('transporte');
+        $this->db->where('Fecha >=', $year . '-01-01');
+        $this->db->where('Fecha <=', $year . '-12-31');
+        $this->db->where('Estado','Activo');
+        $this->db->group_by('mes');
+        $resultado = $this->db->get()->result_array();
+        foreach ($resultado as $row) {
+
+            $TrasnporteTotal[(int) $row['mes'] - 1] = (float) $row['Total'];
+        }
+
+        return $TrasnporteTotal;
+    }
+    public function MovimientoGeneralTransporteCamionesEmpresa($year)
+    {
+        $TrasnporteTotal = array(
+            0 => 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+            8 => 0,
+            9 => 0,
+            10 => 0,
+            11 => 0,
+        );
+        $this->db->select('sum(Total) as Total, month(Fecha) as mes');
+        $this->db->from('detalle_transporte_ganado dt');
+        $this->db->join('camion c','c.ID_camion = dt.ID_camion');
+        $this->db->where('c.ID_contrato !=','NULL');
+        $this->db->where('Fecha >=', $year . '-01-01');
+        $this->db->where('Fecha <=', $year . '-12-31');
+        $this->db->group_by('mes');
+
+        $resultado = $this->db->get()->result_array();
+        foreach ($resultado as $row) {
+            $TrasnporteTotal[(int) $row['mes'] - 1] = (float) $row['Total'];
+        }
+
+        return $TrasnporteTotal;
+    }
 }
