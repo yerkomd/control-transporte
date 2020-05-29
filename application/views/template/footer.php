@@ -20,52 +20,23 @@
         <!-- FastClick -->
         <?php script('/vendors/fastclick/lib/fastclick.js') ?>
         <!-- <script src="../vendors/fastclick/lib/fastclick.js"></script> -->
-        <!-- NProgress -->
-        <?php script('/vendors/nprogress/nprogress.js') ?>
-        <!-- <script src="../vendors/nprogress/nprogress.js"></script> -->
+      
         <!-- Chart.js -->
         <?php script('/vendors/Chart.js/dist/Chart.min.js') ?>
         <!-- <script src="../vendors/Chart.js/dist/Chart.min.js"></script> -->
-        <!-- gauge.js -->
-        <?php script('/vendors/gauge.js/dist/gauge.min.js') ?>
-        <!-- <script src="../vendors/gauge.js/dist/gauge.min.js"></script> -->
+
         <!-- bootstrap-progressbar -->
         <?php script('/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') ?>
         <!-- <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script> -->
         <!-- iCheck -->
         <?php script('/vendors/iCheck/icheck.min.js') ?>
         <!-- <script src="../vendors/iCheck/icheck.min.js"></script> -->
-        <!-- Skycons -->
-        <?php script('/vendors/skycons/skycons.js') ?>
-        <!-- <script src="../vendors/skycons/skycons.js"></script> -->
-        <!-- Flot -->
-        <?php script('/vendors/Flot/jquery.flot.js') ?>
-        <!-- <script src="../vendors/Flot/jquery.flot.js"></script> -->
-        <?php script('/vendors/Flot/jquery.flot.pie.js') ?>
-        <!-- <script src="../vendors/Flot/jquery.flot.pie.js"></script> -->
-        <?php script('/vendors/Flot/jquery.flot.time.js') ?>
-        <!-- <script src="../vendors/Flot/jquery.flot.time.js"></script> -->
-        <?php script('/vendors/Flot/jquery.flot.stack.js') ?>
-        <!-- <script src="../vendors/Flot/jquery.flot.stack.js"></script> -->
-        <?php script('/vendors/Flot/jquery.flot.resize.js') ?>
-        <!-- <script src="../vendors/Flot/jquery.flot.resize.js"></script> -->
-        <!-- Flot plugins -->
-        <?php script('/vendors/flot.orderbars/js/jquery.flot.orderBars.js') ?>
-        <!-- <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script> -->
-        <?php script('/vendors/flot-spline/js/jquery.flot.spline.min.js') ?>
-        <!-- <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script> -->
-        <?php script('/vendors/flot.curvedlines/curvedLines.js') ?>
-        <!-- <script src="../vendors/flot.curvedlines/curvedLines.js"></script> -->
+     
+   
         <!-- DateJS -->
         <?php script('/vendors/DateJS/build/date.js') ?>
         <!-- <script src="../vendors/DateJS/build/date.js"></script> -->
-        <!-- JQVMap -->
-        <?php script('/vendors/jqvmap/dist/jquery.vmap.js') ?>
-        <!-- <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script> -->
-        <?php script('/vendors/jqvmap/dist/maps/jquery.vmap.world.js') ?>
-        <!-- <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script> -->
-        <?php script('/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') ?>
-        <!-- <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script> -->
+     
         <!-- bootstrap-daterangepicker -->
         <?php script('/vendors/moment/min/moment.min.js') ?>
         <!-- <script src="../vendors/moment/min/moment.min.js"></script> -->
