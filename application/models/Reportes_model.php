@@ -57,6 +57,7 @@ class Reportes_model extends CI_Model
 
         $this->db->select_sum('Total', 'IngresoTransporte');
         $this->db->from('transporte');
+        $this->db->where('Estado','Activo');
         $IngresoTrasnporte = $this->db->get()->row_array();
 
         $Balance = $BalancePagoCuentas['Balance'] + $IngresoTrasnporte['IngresoTransporte'];
