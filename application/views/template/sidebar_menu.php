@@ -57,7 +57,7 @@
                   <li><a><i class="fas fa-money"></i> Pagos<span class="fas fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url("Pago_cuentas/pagoClientes") ?>">Pago clientes</a></li>
-                      <li><a href="<?php echo site_url("Pago_cuentas/pagoTalleres") ?>">Talleres o ferreterias</a></li>
+                      <li><a href="<?php echo site_url("Pago_cuentas/pagoTalleres") ?>">Cuentas camiones</a></li>
                       <li><a href="<?php echo site_url("Pago_cuentas/pagoProveedores") ?>">Proveedores camiones</a></li>
                       <li><a href="<?php echo site_url("pagoEmpleados/pagoEmpleado") ?>">Pago empleados</a></li>
                       <li><a href="<?php echo site_url("Pago_cuentas/movimientoCajaEmpresa") ?>">Movimiento cuenta empresa</a></li>

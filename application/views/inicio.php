@@ -83,14 +83,14 @@
             </ul>
             <div class="clearfix"></div>
           </div>
-          <div class="x_content" >
+          <div class="x_content">
             <div class="" role="tabpanel" data-example-id="togglable-tabs">
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                <li role="tablaProdcutos" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Tabla de balance de clientes</a>
+                <li role="tablaProdcutos" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Clientes</a>
                 </li>
-                <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Tabla de balance de proveedores</a>
+                <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Proveedores</a>
                 </li>
-                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Tabla de balance de cuentas de camiones</a>
+                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Cuentas de general</a>
                 </li>
               </ul>
               <div id="myTabContent" class="tab-content">
@@ -116,7 +116,9 @@
                               <td><?php echo $row['Apellidos'] ?></td>
                               <td><?php echo $row['balance'] ?></td>
                               <td>
-                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                <div class='text-center'>
+                                  <button type="button" title="Reporte cliente" class="btn btn-info btn-reporte-cliente" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
+                                </div>
                               </td>
                             </tr>
                       <?php }
@@ -157,7 +159,9 @@
                               <td><?php echo $row['Apellidos'] ?></td>
                               <td><?php echo $row['balance'] ?></td>
                               <td>
-                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                <div class='text-center'>
+                                  <button type="button" title="Reporte completo" class="btn btn-info btn-reporte-proveedor" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
+                                </div>
                               </td>
                             </tr>
                       <?php }
@@ -198,7 +202,9 @@
                               <td><?php echo $row['Departamento'] ?></td>
                               <td><?php echo $row['balance'] ?></td>
                               <td>
-                                <button class="btn btn-warning btn-sm" id="btn-editar"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                <div class='text-center'>
+                                  <button type="button" title="Reporte completo" class="btn btn-info btn-balance-empleado" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
+                                </div>
                               </td>
                             </tr>
                       <?php }
@@ -230,3 +236,23 @@
 </div>
 
 <!-- /page content -->
+
+<div class="modal fade" id="modal-detalle">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Detalle de cuenta</h4>
+      </div>
+      <div class="modal-body ui-front">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print">Imprimir</span></button>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</div>
+<!-- /.modal -->

@@ -57,7 +57,7 @@ class Reportes_model extends CI_Model
 
         $this->db->select_sum('Total', 'IngresoTransporte');
         $this->db->from('transporte');
-        $this->db->where('Estado','Activo');
+        $this->db->where('Estado', 'Activo');
         $IngresoTrasnporte = $this->db->get()->row_array();
 
         $Balance = $BalancePagoCuentas['Balance'] + $IngresoTrasnporte['IngresoTransporte'];
@@ -117,7 +117,7 @@ class Reportes_model extends CI_Model
         $this->db->from('transporte');
         $this->db->where('Fecha >=', $year . '-01-01');
         $this->db->where('Fecha <=', $year . '-12-31');
-        $this->db->where('Estado','Activo');
+        $this->db->where('Estado', 'Activo');
         $this->db->group_by('mes');
         $resultado = $this->db->get()->result_array();
         foreach ($resultado as $row) {
@@ -145,8 +145,8 @@ class Reportes_model extends CI_Model
         );
         $this->db->select('sum(Total) as Total, month(Fecha) as mes');
         $this->db->from('detalle_transporte_ganado dt');
-        $this->db->join('camion c','c.ID_camion = dt.ID_camion');
-        $this->db->where('c.ID_contrato !=','NULL');
+        $this->db->join('camion c', 'c.ID_camion = dt.ID_camion');
+        $this->db->where('c.ID_contrato !=', 'NULL');
         $this->db->where('Fecha >=', $year . '-01-01');
         $this->db->where('Fecha <=', $year . '-12-31');
         $this->db->group_by('mes');
@@ -157,5 +157,21 @@ class Reportes_model extends CI_Model
         }
 
         return $TrasnporteTotal;
+    }
+    public function obtenerDetalleCliente($ID_Cliente)
+    {
+        $this->db->select('*');
+        $this->db->from('detallecliente');
+        $this->db->where('ID_Cliente', $ID_Cliente);
+        $this->db->order_by('fecha');
+        return $this->db->get()->result_array();
+    }
+    public function obtenerDetalleProveedor($ID_proveedor)
+    {
+        $this->db->select('*');
+        $this->db->from('DetalleProveedor');
+        $this->db->where('ID_proveedor', $ID_proveedor);
+        $this->db->order_by('fecha');
+        return $this->db->get()->result_array();
     }
 }

@@ -173,6 +173,36 @@ $(document).ready(function () {
 		},
 	});
 	GenerarGraficoMovimiento(year);
+	$(document).on('click','.btn-reporte-cliente', function () {
+		fila = $(this).closest('tr');
+		ID_Cliente = parseInt(fila.find('td:eq(0)').text());
+		$.ajax({
+			type: "POST",
+			url: base_url + "/inicio/detalleCliente/" + ID_Cliente,
+			dataType: "html",
+			success: function (response) {
+				$('#modal-detalle .modal-body').html(response);
+			}
+		});
+	});
+	$(document).on('click','.btn-reporte-proveedor', function () {
+		fila = $(this).closest('tr');
+		ID_proveedor = parseInt(fila.find('td:eq(0)').text());
+		$.ajax({
+			type: "POST",
+			url: base_url + "/inicio/detalleProveedor/" + ID_proveedor,
+			dataType: "html",
+			success: function (response) {
+				$('#modal-detalle .modal-body').html(response);
+			}
+		});
+	});
+	$(document).on('click', '.btn-print', function () {
+
+		$("#modal-detalle .modal-body").print({
+			title: 'Balance',
+		});
+	});
 });
 
 function resetGrafico() {
@@ -226,7 +256,7 @@ function GraficoMovimiento(Datos) {
 		},
 		options:{
 			legend: {
-				display: true,
+				display: false,
 				position: 'bottom',
 			},
 		}

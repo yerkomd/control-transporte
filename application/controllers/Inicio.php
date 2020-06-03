@@ -52,4 +52,16 @@ class Inicio extends BaseController
 
 		echo json_encode($datos);
 	}
+	public function detalleCliente($ID_Cliente)
+	{
+		$datos['detalleCliente'] = $this->Reportes_model->obtenerDetalleCliente($ID_Cliente);
+		$datos['Cliente'] = $this->Cliente_model->obtenerCliente($ID_Cliente);
+		$this->load->view('reportes/clientes/detalle_cliente',$datos);
+	}
+	public function detalleProveedor($ID_proveedor)
+	{
+		$datos['detalleProveedor'] = $this->Reportes_model->obtenerDetalleProveedor($ID_proveedor);
+		$datos['Proveedor'] = $this->Proveedor_model->obtenerProveedor($ID_proveedor);
+		$this->load->view('reportes/proveedores/detalle_proveedor',$datos);
+	}
 }
