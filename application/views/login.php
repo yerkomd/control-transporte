@@ -46,23 +46,18 @@
               </div>
               <div>
                 <button type="submit" class="btn btn-default submit">Log in</button>
-                <a class="reset_pass" href="#">Lost your password?</a>
+                
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
-                
+                               
                 <div class="clearfix"></div>
                 <br />
-
-
                 <div>
                   <h1><i class="fas fa-truck-moving"></i></i></i> Control de Transporte</h1>
-                  <p>©2018 Todos los derechos reservados. Control de transporte El Oso! </p>
+                  <p>©2020 Todos los derechos reservados. Control de transporte Melgar! </p>
                 </div>
               </div>
             </form>
