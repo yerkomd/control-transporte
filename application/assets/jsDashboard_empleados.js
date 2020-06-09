@@ -29,7 +29,7 @@ $(document).ready(function () {
 		ID_empleado = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
 			type: "POST",
-			url: base_url + "/dashboardEmpleado/balanceEmpleado/" + ID_empleado,
+			url: base_url + "/DashboardEmpleado/balanceEmpleado/" + ID_empleado,
 			dataType: "html",
 			success: function (respuesta) {
                 

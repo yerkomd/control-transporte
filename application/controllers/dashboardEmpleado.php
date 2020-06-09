@@ -1,5 +1,5 @@
 <?php
-class dashboardEmpleado extends BaseController
+class DashboardEmpleado extends BaseController
 {
 
     function __construct()

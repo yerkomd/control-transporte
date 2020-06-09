@@ -178,7 +178,7 @@ $(document).ready(function () {
 		ID_Cliente = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
 			type: "POST",
-			url: base_url + "/inicio/detalleCliente/" + ID_Cliente,
+			url: base_url + "/Inicio/detalleCliente/" + ID_Cliente,
 			dataType: "html",
 			success: function (response) {
 				$('#modal-detalle .modal-body').html(response);
@@ -190,7 +190,7 @@ $(document).ready(function () {
 		ID_proveedor = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
 			type: "POST",
-			url: base_url + "/inicio/detalleProveedor/" + ID_proveedor,
+			url: base_url + "/Inicio/detalleProveedor/" + ID_proveedor,
 			dataType: "html",
 			success: function (response) {
 				$('#modal-detalle .modal-body').html(response);

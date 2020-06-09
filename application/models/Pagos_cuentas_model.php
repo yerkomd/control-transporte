@@ -5,7 +5,7 @@ class Pagos_cuentas_model extends CI_Model
     {
         $this->db->select('p.*, c.Nombre, c.Apellidos, c.CI, c.Direccion, c.Telefono_01, c.Telefono_02');
         $this->db->from('pago_cuentas p');
-        $this->db->join('Cliente c', 'c.ID_Cliente = p.ID_Cliente');
+        $this->db->join('cliente c', 'c.ID_Cliente = p.ID_Cliente');
         $this->db->limit(500);
         return $this->db->get()->result();
     }
@@ -25,7 +25,7 @@ class Pagos_cuentas_model extends CI_Model
     {
         $this->db->select('p.*, c.Nombre, c.Apellidos, c.CI, c.Direccion, c.Telefono_01, c.Telefono_02');
         $this->db->from('pago_cuentas p');
-        $this->db->join('Cliente c', 'c.ID_Cliente = p.ID_Cliente');
+        $this->db->join('cliente c', 'c.ID_Cliente = p.ID_Cliente');
         $this->db->where('ID_pago_cuentas', $ID_pago_cuentas);
         return $this->db->get()->row_array();
     }
