@@ -197,6 +197,18 @@ $(document).ready(function () {
 			}
 		});
 	});
+	$(document).on('click','.btn-reporte-taller', function () {
+		fila = $(this).closest('tr');
+		ID_taller = parseInt(fila.find('td:eq(0)').text());
+		$.ajax({
+			type: "POST",
+			url: base_url + "/Inicio/detalleTaller/" + ID_taller,
+			dataType: "html",
+			success: function (response) {
+				$('#modal-detalle .modal-body').html(response);
+			}
+		});
+	});
 	$(document).on('click', '.btn-print', function () {
 
 		$("#modal-detalle .modal-body").print({

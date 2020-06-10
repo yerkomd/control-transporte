@@ -203,7 +203,7 @@
                               <td><?php echo $row['balance'] ?></td>
                               <td>
                                 <div class='text-center'>
-                                  <button type="button" title="Reporte completo" class="btn btn-info btn-balance-empleado" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
+                                  <button type="button" title="Reporte completo" class="btn btn-info btn-reporte-taller" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
                                 </div>
                               </td>
                             </tr>

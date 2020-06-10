@@ -64,4 +64,10 @@ class Inicio extends BaseController
 		$datos['Proveedor'] = $this->Proveedor_model->obtenerProveedor($ID_proveedor);
 		$this->load->view('reportes/proveedores/detalle_proveedor',$datos);
 	}
+	public function detalleTaller($ID_taller)
+	{
+		$datos['detalleTaller'] = $this->Reportes_model->obtenerDetalleTaller($ID_taller);
+		$datos['Taller'] = $this->Taller_model->obtenerTaller($ID_taller);
+		$this->load->view('reportes/talleres/detalle_taller',$datos);
+	}
 }
