@@ -49,7 +49,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6">Total de Balance</td>
+                    <td colspan="7">Total de Balance</td>
                     <td><?php echo number_format($balance, 2); ?> Bs</td>
                 </tr>
             </tfoot>
