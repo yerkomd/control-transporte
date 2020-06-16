@@ -6,6 +6,7 @@ class Taller_model extends CI_Model
         $this->db->select('*');
         $this->db->from('taller');
         $this->db->where('Estado','Activo');
+        $this->db->order_by('NombreTaller');
         return $this->db->get()->result();
     }
     public function ingresarTaller($NombreTaller, $Departamento, $Direccion)

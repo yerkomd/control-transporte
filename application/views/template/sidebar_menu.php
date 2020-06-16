@@ -63,16 +63,6 @@
                       <li><a href="<?php echo site_url("Pago_cuentas/movimientoCajaEmpresa") ?>">Movimiento cuenta empresa</a></li>
                     </ul>
                   </li>
-
-                  <li><a><i class="far fa-chart-bar"></i> Reportes <span class="fas fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Chart JS</a></li>
-                      <li><a href="chartjs2.html">Chart JS2</a></li>
-                      <li><a href="morisjs.html">Moris JS</a></li>
-                      <li><a href="echarts.html">ECharts</a></li>
-                      <li><a href="other_charts.html">Other Charts</a></li>
-                    </ul>
-                  </li>
               </div>
 
             </div>
@@ -118,14 +108,6 @@
                         <span class=" fa fa-angle-down"></span>
                       </a>
                       <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;"> Profile</a></li>
-                        <li>
-                          <a href="javascript:;">
-                            <span class="badge bg-red pull-right">50%</span>
-                            <span>Settings</span>
-                          </a>
-                        </li>
-                        <li><a href="javascript:;">Help</a></li>
                         <li><a href="<?php echo site_url("BaseController/logout") ?>"><i class="fas fa-sign-out pull-right"></i> Log Out</a></li>
                       </ul>
                     </li>

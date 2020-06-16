@@ -42,6 +42,7 @@ class Inicio extends BaseController
 		$datos['DetalleBalanceProveedores'] = $this->Reportes_model->obtenerDetalleBalanceProveedores();
 		$datos['DetalleBalanceTaller'] = $this->Reportes_model->obtenerDetalleBalanceTaller();
 		$datos['year'] = $this->Reportes_model->obtenerAnosTrasnporte();
+		$datos['camiones'] = $this->Camion_model->obtenerCamionesPropios();
 		$this->loadView('inicio', 'inicio', $datos);
 	}
 	public function graficoMovimiento()

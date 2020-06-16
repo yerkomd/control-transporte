@@ -24,6 +24,7 @@ class Camion_model extends CI_Model
             'Capacidad' => $Capacidad,
             'N_senasag' => $N_senasag,
             'Kilometraje' => $Kilometraje,
+            'Propio' => '1',
             'Estado' => 'Activo',
 
         );

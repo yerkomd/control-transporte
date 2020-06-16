@@ -173,7 +173,7 @@ $(document).ready(function () {
 		},
 	});
 	GenerarGraficoMovimiento(year);
-	$(document).on('click','.btn-reporte-cliente', function () {
+	$(document).on('click', '.btn-reporte-cliente', function () {
 		fila = $(this).closest('tr');
 		ID_Cliente = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
@@ -185,7 +185,7 @@ $(document).ready(function () {
 			}
 		});
 	});
-	$(document).on('click','.btn-reporte-proveedor', function () {
+	$(document).on('click', '.btn-reporte-proveedor', function () {
 		fila = $(this).closest('tr');
 		ID_proveedor = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
@@ -197,7 +197,7 @@ $(document).ready(function () {
 			}
 		});
 	});
-	$(document).on('click','.btn-reporte-taller', function () {
+	$(document).on('click', '.btn-reporte-taller', function () {
 		fila = $(this).closest('tr');
 		ID_taller = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
@@ -219,7 +219,7 @@ $(document).ready(function () {
 
 function resetGrafico() {
 	$('#GraficoM').remove(); // this is my <canvas> element
-	$('#GraficoMovimiento').append('<canvas id="GraficoM" height="200" width="700""></canvas>');
+	$('#GraficoMovimiento').append('<canvas id="GraficoM" ></canvas>');
 }
 
 function GenerarGraficoMovimiento(year) {
@@ -240,6 +240,7 @@ function GenerarGraficoMovimiento(year) {
 function GraficoMovimiento(Datos) {
 
 	var f = document.getElementById("GraficoM");
+	var f = document.getElementById("GraficoM").getContext('2d');
 	new Chart(f, {
 		type: "line",
 		data: {
@@ -266,11 +267,13 @@ function GraficoMovimiento(Datos) {
 				data: Datos['MovimientoGeneralTransporteCamionesEmpresa']
 			}]
 		},
-		options:{
+		options: {
 			legend: {
-				display: false,
+				display: true,
 				position: 'bottom',
+				Align: 'start',
 			},
+			maintainAspectRatio: false,	
 		}
 
 	});
