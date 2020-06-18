@@ -27,7 +27,7 @@ class Cliente_model extends CI_Model
             'Telefono_02' => $Telefono_02,
             'Estado' => 'Activo',
         );
-        $this->db->insert('Cliente', $datos);
+        $this->db->insert('cliente', $datos);
         return $this->db->insert_id();
     }
     public function editarCliente($ID_cliente, $Nombre, $CI, $Apellidos, $Direccion, $Telefono_01, $Telefono_02)
@@ -42,7 +42,7 @@ class Cliente_model extends CI_Model
             
         );
         $this->db->where('ID_cliente',$ID_cliente);
-        $this->db->update('Cliente', $datos);
+        $this->db->update('cliente', $datos);
  
     }
     public function eliminarCliente($ID_cliente)
@@ -52,6 +52,6 @@ class Cliente_model extends CI_Model
             'Estado' => 'Inactivo', 
         );
         $this->db->where('ID_cliente',$ID_cliente);
-        $this->db->update('Cliente', $datos);
+        $this->db->update('cliente', $datos);
     }
 }

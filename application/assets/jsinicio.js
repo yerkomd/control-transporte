@@ -172,25 +172,97 @@ $(document).ready(function () {
 			);
 		},
 	});
+	var tablaDetalleCamion = $('#tabla_detalle_camion').DataTable({
+		responsive: "true",
+		"order": [
+			[1, "asc"]
+		],
+		"language": {
+			'lengthMenu': "Mostrar _MENU_ registros",
+			"zeroRecords": "No se encontraron resultados",
+			"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registro",
+			"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+			"sSearch": "Buscar",
+			"oPaginate": {
+				"sFirst": "Primero",
+				"sLast": "Ultimo",
+				"sNext": "Siguiente",
+				"sPrevious": "Anterior",
+
+			},
+			"sProcesing": "Procesando...",
+		},
+		"footerCallback": function (row, data, start, end, display, tfoot) {
+			var api = this.api(),
+				data;
+
+			// Remove the formatting to get integer data for summation
+			var intVal = function (i) {
+				return typeof i === 'string' ?
+					i.replace(/[\$,]/g, '') * 1 :
+					typeof i === 'number' ?
+					i : 0;
+			};
+
+			// Total over all pages
+			totalIngreso = api
+				.column(6)
+				.data()
+				.reduce(function (a, b) {
+					return intVal(a) + intVal(b);
+				}, 0);
+			totalEgreso = api
+				.column(7)
+				.data()
+				.reduce(function (a, b) {
+					return intVal(a) + intVal(b);
+				}, 0);
+
+			// Update footer
+			$(api.column(6).footer()).html(
+				totalIngreso
+			);
+			$(api.column(7).footer()).html(
+				totalEgreso
+			);
+			$(api.column(8).footer()).html(
+				totalIngreso - totalEgreso
+			);
+		},
+
+	});
 	GenerarGraficoMovimiento(year);
-	$(document).on('click','.btn-reporte-cliente', function () {
+	$(document).on('click', '.btn-reporte-cliente', function () {
 		fila = $(this).closest('tr');
 		ID_Cliente = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
 			type: "POST",
-			url: base_url + "/inicio/detalleCliente/" + ID_Cliente,
+			url: base_url + "/Inicio/detalleCliente/" + ID_Cliente,
 			dataType: "html",
 			success: function (response) {
 				$('#modal-detalle .modal-body').html(response);
 			}
 		});
 	});
-	$(document).on('click','.btn-reporte-proveedor', function () {
+	$(document).on('click', '.btn-reporte-proveedor', function () {
 		fila = $(this).closest('tr');
 		ID_proveedor = parseInt(fila.find('td:eq(0)').text());
 		$.ajax({
 			type: "POST",
-			url: base_url + "/inicio/detalleProveedor/" + ID_proveedor,
+			url: base_url + "/Inicio/detalleProveedor/" + ID_proveedor,
+			dataType: "html",
+			success: function (response) {
+				$('#modal-detalle .modal-body').html(response);
+			}
+		});
+	});
+	$(document).on('click', '.btn-reporte-taller', function () {
+		fila = $(this).closest('tr');
+		ID_taller = parseInt(fila.find('td:eq(0)').text());
+		$.ajax({
+			type: "POST",
+			url: base_url + "/Inicio/detalleTaller/" + ID_taller,
 			dataType: "html",
 			success: function (response) {
 				$('#modal-detalle .modal-body').html(response);
@@ -203,11 +275,54 @@ $(document).ready(function () {
 			title: 'Balance',
 		});
 	});
+	$(document).on('submit', '#reporte-camion', function (e) {
+		e.preventDefault();
+		ID_camion = $.trim($('#camion').val());
+		fechaIni = $.trim($('#fechaIni').val());
+		fechaFin = $.trim($('#fechaFin').val());
+		if (fechaIni < fechaFin) {
+			$.ajax({
+				type: "POST",
+				url: base_url + "/Inicio/detalleCamionEmpresa",
+				data: {
+					ID_camion: ID_camion,
+					fechaIni: fechaIni,
+					fechaFin: fechaFin,
+				},
+				dataType: "json",
+				success: function (respuesta) {
+					detalleCamionEmpresa = respuesta['detalleCamionEmpresa'];
+					balance = 0;
+					tablaDetalleCamion.clear();
+					for (let i = 0; i < detalleCamionEmpresa.length; i++) {
+						balance = balance + Number(detalleCamionEmpresa[i]['Ingreso']) - Number(detalleCamionEmpresa[i]['Egreso']);
+						tablaDetalleCamion.row.add([
+							detalleCamionEmpresa[i]['Placa'],
+							detalleCamionEmpresa[i]['Fecha'],
+							detalleCamionEmpresa[i]['Descripcion'],
+							detalleCamionEmpresa[i]['Precio'],
+							detalleCamionEmpresa[i]['Cantidad'],
+							detalleCamionEmpresa[i]['Descuento'],
+							detalleCamionEmpresa[i]['Ingreso'],
+							detalleCamionEmpresa[i]['Egreso'],
+							balance,
+						]).draw();
+					}
+				}
+			});
+		} else {
+			swal({
+				title: 'Error de fecha',
+				text: 'La fecha inicial no puede ser mayor que la final',
+				type: 'error'
+			});
+		}
+	});
 });
 
 function resetGrafico() {
 	$('#GraficoM').remove(); // this is my <canvas> element
-	$('#GraficoMovimiento').append('<canvas id="GraficoM" height="200" width="700""></canvas>');
+	$('#GraficoMovimiento').append('<canvas id="GraficoM" ></canvas>');
 }
 
 function GenerarGraficoMovimiento(year) {
@@ -228,6 +343,7 @@ function GenerarGraficoMovimiento(year) {
 function GraficoMovimiento(Datos) {
 
 	var f = document.getElementById("GraficoM");
+	var f = document.getElementById("GraficoM").getContext('2d');
 	new Chart(f, {
 		type: "line",
 		data: {
@@ -254,11 +370,13 @@ function GraficoMovimiento(Datos) {
 				data: Datos['MovimientoGeneralTransporteCamionesEmpresa']
 			}]
 		},
-		options:{
+		options: {
 			legend: {
-				display: false,
+				display: true,
 				position: 'bottom',
+				Align: 'start',
 			},
+			maintainAspectRatio: false,
 		}
 
 	});

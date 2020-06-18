@@ -1,5 +1,5 @@
 <?php
-class pagoEmpleados extends BaseController
+class PagoEmpleados extends BaseController
 {
 
   function __construct()

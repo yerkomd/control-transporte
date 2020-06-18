@@ -19,7 +19,7 @@ if (isset($this->session->userdata['logged_in'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php img('images/favicon.ico') ?>" type="image/ico" />
 
-    <title>Control de transporte El Oso! | </title>
+    <title>Control de transporte Melgar| </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" integrity="sha256-ypsxakqmNfVPJXwLJdWEHLEvD8AfFJjbmbm0L7r+NKk=" crossorigin="anonymous" />

@@ -62,8 +62,8 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <div class="GraficoMovimiento" id="GraficoMovimiento">
-              <canvas id="GraficoM" height="200" width="700"></canvas>
+            <div class="GraficoMovimiento" id="GraficoMovimiento" style="position: relative; height: 300px;">
+              <canvas id="GraficoM"></canvas>
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@
                               <td><?php echo $row['balance'] ?></td>
                               <td>
                                 <div class='text-center'>
-                                  <button type="button" title="Reporte completo" class="btn btn-info btn-balance-empleado" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
+                                  <button type="button" title="Reporte completo" class="btn btn-info btn-reporte-taller" data-toggle="modal" data-target="#modal-detalle" value=""><span class="fa fa-search"></span></button>
                                 </div>
                               </td>
                             </tr>
@@ -233,7 +233,104 @@
     </div>
 
   </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Reportes de camiones empresa </h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+
+            </li>
+          </ul>
+
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <form action="" id="reporte-camion">
+            <div class="form-group">
+              <label for="camion" class="col-md-1 col-xs-12 control-label text-right">Camion: </label>
+              <div class="col-md-2 col-xs-12">
+                <select name="camion" id="camion" class="form-control" required>
+                  <option value=""></option>
+                  <?php foreach ($camiones as $row) : ?>
+                    <option value="<?php echo $row->ID_camion ?>"><?php echo $row->N_Placa . ' - ' . $row->Marca ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right" required>Desde: </label>
+              <div class="col-md-2 col-xs-12">
+                <input type="date" name="fechaIni" id="fechaIni" class="form-control">
+              </div>
+              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right" required>Hasta: </label>
+              <div class="col-md-2 col-xs-12">
+                <input type="date" name="fechaFin" id="fechaFin" class="form-control">
+              </div>
+              <div class="col-md-1 col-xs-12">
+                <button type="submit" class="btn btn-block btn-success">Generar</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Detalle de reporte </h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                    </li>
+                  </ul>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div>
+                    <table id="tabla_detalle_camion" class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Placa</th>
+                          <th>Fecha </th>
+                          <th>Descripcion</th>
+                          <th>Precio</th>
+                          <th>Cantidad</th>
+                          <th>Descuento</th>
+                          <th>Ingreso</th>
+                          <th>Egreso</th>
+                          <th>Balance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="6" >Total</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
+</div>
+
+
 
 <!-- /page content -->
 

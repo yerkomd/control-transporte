@@ -42,6 +42,7 @@ class Inicio extends BaseController
 		$datos['DetalleBalanceProveedores'] = $this->Reportes_model->obtenerDetalleBalanceProveedores();
 		$datos['DetalleBalanceTaller'] = $this->Reportes_model->obtenerDetalleBalanceTaller();
 		$datos['year'] = $this->Reportes_model->obtenerAnosTrasnporte();
+		$datos['camiones'] = $this->Camion_model->obtenerCamionesPropios();
 		$this->loadView('inicio', 'inicio', $datos);
 	}
 	public function graficoMovimiento()
@@ -63,5 +64,19 @@ class Inicio extends BaseController
 		$datos['detalleProveedor'] = $this->Reportes_model->obtenerDetalleProveedor($ID_proveedor);
 		$datos['Proveedor'] = $this->Proveedor_model->obtenerProveedor($ID_proveedor);
 		$this->load->view('reportes/proveedores/detalle_proveedor',$datos);
+	}
+	public function detalleTaller($ID_taller)
+	{
+		$datos['detalleTaller'] = $this->Reportes_model->obtenerDetalleTaller($ID_taller);
+		$datos['Taller'] = $this->Taller_model->obtenerTaller($ID_taller);
+		$this->load->view('reportes/talleres/detalle_taller',$datos);
+	}
+	public function detalleCamionEmpresa()
+	{
+		$ID_camion = $this->input->post('ID_camion');
+		$fechaIni = $this->input->post('fechaIni');
+		$fechaFin = $this->input->post('fechaFin');
+		$datos['detalleCamionEmpresa'] = $this->Reportes_model->obtenerDetalleCamion($ID_camion, $fechaIni, $fechaFin);
+		echo json_encode($datos);
 	}
 }

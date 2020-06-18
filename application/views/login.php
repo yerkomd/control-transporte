@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Control de Transporte El Oso! | </title>
+    <title>Control de Transporte Melgar! | </title>
 
     <!-- Bootstrap -->
     <?php css('/vendors/bootstrap/dist/css/bootstrap.min.css') ?>
@@ -64,7 +64,7 @@
           </section>
         </div>
 
-        <div id="register" class="animate form registration_form">
+        <!-- <div id="register" class="animate form registration_form">
           <section class="login_content">
             <form method="post" id="Registro" action="<?php echo site_url('BaseController/new_user_registration') ?>">
               <h1>Create Account</h1>
@@ -98,7 +98,7 @@
               </div>
             </form>
           </section>
-        </div>
+        </div> -->
         <div class="clearfix"><?php echo validation_errors(); ?></div>
       </div>
     </div>
