@@ -169,7 +169,7 @@ class Reportes_model extends CI_Model
     public function obtenerDetalleProveedor($ID_proveedor)
     {
         $this->db->select('*');
-        $this->db->from('detalleProveedor');
+        $this->db->from('detalleproveedor');
         $this->db->where('ID_proveedor', $ID_proveedor);
         $this->db->order_by('fecha');
         return $this->db->get()->result_array();
