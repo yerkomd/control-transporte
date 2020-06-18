@@ -71,4 +71,12 @@ class Inicio extends BaseController
 		$datos['Taller'] = $this->Taller_model->obtenerTaller($ID_taller);
 		$this->load->view('reportes/talleres/detalle_taller',$datos);
 	}
+	public function detalleCamionEmpresa()
+	{
+		$ID_camion = $this->input->post('ID_camion');
+		$fechaIni = $this->input->post('fechaIni');
+		$fechaFin = $this->input->post('fechaFin');
+		$datos['detalleCamionEmpresa'] = $this->Reportes_model->obtenerDetalleCamion($ID_camion, $fechaIni, $fechaFin);
+		echo json_encode($datos);
+	}
 }

@@ -182,4 +182,15 @@ class Reportes_model extends CI_Model
         $this->db->order_by('Fecha');
         return $this->db->get()->result_array();
     }
+    public function obtenerDetalleCamion($ID_camion, $fechaIni, $fechaFin)
+    {
+        $this->db->select('dc.*, t.Descripcion as TransporteDescripcion');
+        $this->db->from('detalle_camiones_propio dc');
+        $this->db->join('transporte t','t.ID_transporte = dc.ID_transporte','left');
+        $this->db->where('dc.Fecha >=', $fechaIni);
+        $this->db->where('dc.Fecha <=', $fechaFin);
+        $this->db->where('dc.ID_camion', $ID_camion);
+        $this->db->order_by('dc.Fecha');
+        return $this->db->get()->result_array();
+    }
 }

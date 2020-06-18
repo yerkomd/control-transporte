@@ -172,6 +172,66 @@ $(document).ready(function () {
 			);
 		},
 	});
+	var tablaDetalleCamion = $('#tabla_detalle_camion').DataTable({
+		responsive: "true",
+		"order": [
+			[1, "asc"]
+		],
+		"language": {
+			'lengthMenu': "Mostrar _MENU_ registros",
+			"zeroRecords": "No se encontraron resultados",
+			"info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registro",
+			"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
+			"sSearch": "Buscar",
+			"oPaginate": {
+				"sFirst": "Primero",
+				"sLast": "Ultimo",
+				"sNext": "Siguiente",
+				"sPrevious": "Anterior",
+
+			},
+			"sProcesing": "Procesando...",
+		},
+		"footerCallback": function (row, data, start, end, display, tfoot) {
+			var api = this.api(),
+				data;
+
+			// Remove the formatting to get integer data for summation
+			var intVal = function (i) {
+				return typeof i === 'string' ?
+					i.replace(/[\$,]/g, '') * 1 :
+					typeof i === 'number' ?
+					i : 0;
+			};
+
+			// Total over all pages
+			totalIngreso = api
+				.column(6)
+				.data()
+				.reduce(function (a, b) {
+					return intVal(a) + intVal(b);
+				}, 0);
+			totalEgreso = api
+				.column(7)
+				.data()
+				.reduce(function (a, b) {
+					return intVal(a) + intVal(b);
+				}, 0);
+
+			// Update footer
+			$(api.column(6).footer()).html(
+				totalIngreso
+			);
+			$(api.column(7).footer()).html(
+				totalEgreso
+			);
+			$(api.column(8).footer()).html(
+				totalIngreso - totalEgreso
+			);
+		},
+
+	});
 	GenerarGraficoMovimiento(year);
 	$(document).on('click', '.btn-reporte-cliente', function () {
 		fila = $(this).closest('tr');
@@ -214,6 +274,49 @@ $(document).ready(function () {
 		$("#modal-detalle .modal-body").print({
 			title: 'Balance',
 		});
+	});
+	$(document).on('submit', '#reporte-camion', function (e) {
+		e.preventDefault();
+		ID_camion = $.trim($('#camion').val());
+		fechaIni = $.trim($('#fechaIni').val());
+		fechaFin = $.trim($('#fechaFin').val());
+		if (fechaIni < fechaFin) {
+			$.ajax({
+				type: "POST",
+				url: base_url + "/Inicio/detalleCamionEmpresa",
+				data: {
+					ID_camion: ID_camion,
+					fechaIni: fechaIni,
+					fechaFin: fechaFin,
+				},
+				dataType: "json",
+				success: function (respuesta) {
+					detalleCamionEmpresa = respuesta['detalleCamionEmpresa'];
+					balance = 0;
+					tablaDetalleCamion.clear();
+					for (let i = 0; i < detalleCamionEmpresa.length; i++) {
+						balance = balance + Number(detalleCamionEmpresa[i]['Ingreso']) - Number(detalleCamionEmpresa[i]['Egreso']);
+						tablaDetalleCamion.row.add([
+							detalleCamionEmpresa[i]['Placa'],
+							detalleCamionEmpresa[i]['Fecha'],
+							detalleCamionEmpresa[i]['Descripcion'],
+							detalleCamionEmpresa[i]['Precio'],
+							detalleCamionEmpresa[i]['Cantidad'],
+							detalleCamionEmpresa[i]['Descuento'],
+							detalleCamionEmpresa[i]['Ingreso'],
+							detalleCamionEmpresa[i]['Egreso'],
+							balance,
+						]).draw();
+					}
+				}
+			});
+		} else {
+			swal({
+				title: 'Error de fecha',
+				text: 'La fecha inicial no puede ser mayor que la final',
+				type: 'error'
+			});
+		}
 	});
 });
 
@@ -273,7 +376,7 @@ function GraficoMovimiento(Datos) {
 				position: 'bottom',
 				Align: 'start',
 			},
-			maintainAspectRatio: false,	
+			maintainAspectRatio: false,
 		}
 
 	});
