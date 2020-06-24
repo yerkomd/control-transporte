@@ -259,13 +259,13 @@
                   <?php endforeach; ?>
                 </select>
               </div>
-              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right" required>Desde: </label>
+              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right" >Desde: </label>
               <div class="col-md-2 col-xs-12">
-                <input type="date" name="fechaIni" id="fechaIni" class="form-control">
+                <input type="date" name="fechaIni" id="fechaIni" class="form-control" required>
               </div>
-              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right" required>Hasta: </label>
+              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right" >Hasta: </label>
               <div class="col-md-2 col-xs-12">
-                <input type="date" name="fechaFin" id="fechaFin" class="form-control">
+                <input type="date" name="fechaFin" id="fechaFin" class="form-control" required>
               </div>
               <div class="col-md-1 col-xs-12">
                 <button type="submit" class="btn btn-block btn-success">Generar</button>
