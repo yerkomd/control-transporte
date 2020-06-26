@@ -192,9 +192,9 @@ $(document).ready(function () {
 
 function LimpiarFormulario() {
 	$('#modal-PagoCliente').modal('hide');
-	$('#formPagoCliente').trigger('reset');
 	$('.modal-title').text('Formulario transacciones de cliente');
 	$('#Descripcion').text('');
 	$("#ID_Cliente option:selected").removeAttr("selected");
+	$('#formPagoCliente').trigger('reset');
 	opcion = '';
 };

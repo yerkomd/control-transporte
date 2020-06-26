@@ -275,6 +275,7 @@ $(document).ready(function () {
 			title: 'Balance',
 		});
 	});
+	GraficoDoughnutsCamionesEmpresa();
 	$(document).on('submit', '#reporte-camion', function (e) {
 		e.preventDefault();
 		ID_camion = $.trim($('#camion').val());
@@ -380,4 +381,33 @@ function GraficoMovimiento(Datos) {
 		}
 
 	});
+}
+
+function GraficoDoughnutsCamionesEmpresa() {
+
+	var f = document.getElementById("GraficoDoughnutsCamionesEmpresa"),
+		i = {
+			labels: ["Dark Grey", "Purple Color", "Gray Color", "Green Color", "Blue Color"],
+			datasets: [{
+				data: [120, 50, 140, 180, 100],
+				backgroundColor: ["#BDC3C7", "#9B59B6", "#E74C3C", "#26B99A", "#3498DB"],
+				hoverBackgroundColor: ["#CFD4D8", "#B370CF", "#E95E4F", "#36CAAB", "#49A9EA"]
+			}]
+		};
+	new Chart(f, {
+		type: "doughnut",
+		tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+		data: i,
+		maintainAspectRatio: false,
+		options: {
+			legend: {
+				display: false,
+			},
+			title: {
+				display: true,
+				text: 'Grafico de Gastos del camion'
+			},
+		},
+
+	})
 }

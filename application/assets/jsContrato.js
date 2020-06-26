@@ -41,7 +41,7 @@ $(document).ready(function () {
 	$('#formContatos').submit(function (e) {
 		e.preventDefault();
 		tipoContrato = $.trim($('#tipoContrato').val());
-		LimpiarFormulario();
+		$('#modal-default').modal('hide');
 		if (opcion != 'editar') {
 			$.ajax({
 				type: "POST",

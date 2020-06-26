@@ -90,12 +90,12 @@
                 </li>
                 <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Proveedores</a>
                 </li>
-                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Cuentas de general</a>
+                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Cuentas camiones</a>
                 </li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                  <table class="table table-bordered" id="tablaDetalleCliente">
+                  <table class="table table-hover" id="tablaDetalleCliente">
                     <thead>
                       <tr>
                         <th>ID cliente</th>
@@ -138,7 +138,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                  <table class="table table-bordered" id="tablaDetalleProveedores">
+                  <table class="table table-hover" id="tablaDetalleProveedores">
                     <thead>
                       <tr>
                         <th>ID proveedor</th>
@@ -181,7 +181,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                  <table class="table table-bordered" id="tablaDetalleTaller">
+                  <table class="table table-hover" id="tablaDetalleTaller">
                     <thead>
                       <tr>
                         <th>ID cuenta</th>
@@ -259,11 +259,11 @@
                   <?php endforeach; ?>
                 </select>
               </div>
-              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right" >Desde: </label>
+              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right">Desde: </label>
               <div class="col-md-2 col-xs-12">
                 <input type="date" name="fechaIni" id="fechaIni" class="form-control" required>
               </div>
-              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right" >Hasta: </label>
+              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right">Hasta: </label>
               <div class="col-md-2 col-xs-12">
                 <input type="date" name="fechaFin" id="fechaFin" class="form-control" required>
               </div>
@@ -271,7 +271,24 @@
                 <button type="submit" class="btn btn-block btn-success">Generar</button>
               </div>
             </div>
+            <br></br>
           </form>
+          <div class="row">
+            <div class="col-md-5 col-sm-6 col-xs-12">
+              <canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>
+            </div>
+            <div class="col-md-5 col-sm-6 col-xs-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="col-md-3 col-sm-4 col-xs-12"> <p>Descripcion</p></th>
+                    <th class="col-md-2 col-sm-2 col-xs-12"> <p>Total</p></th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+          </div>
 
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -308,7 +325,7 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th colspan="6" >Total</th>
+                          <th colspan="6">Total</th>
                           <th></th>
                           <th></th>
                           <th></th>

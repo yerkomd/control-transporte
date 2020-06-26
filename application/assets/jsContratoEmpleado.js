@@ -245,11 +245,11 @@ $(document).ready(function () {
 
 function LimpiarFormulario() {
 	$('#modal-contratoEmpleado').modal('hide');
-	$('#formContratoEmpleados').trigger('reset');
 	$('.modal-title').text('Formulario  de contrato empleado');
 	$("#tipocontrato option:selected").removeAttr("selected");
 	$('#CI').attr('readonly', false);
 	$('#nombres').attr('readonly', false);
+	$('#formContratoEmpleados').trigger('reset');
 	opcion = '';
 
 }
