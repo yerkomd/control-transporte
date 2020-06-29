@@ -94,11 +94,11 @@
                                       <label for="Productos" class="col-md-12">Buscar y agregar camiones para el servicio</label>
                                       <br></br>
                                       <div class="form-group">
-                                          <div class="col-md-2">
+                                          <div class="col-lg-2 col-md-3">
 
                                               <button class="btn btn-success btn-flat btn-block" type="button" data-toggle="modal" data-target="#modal-CamionesProveedores"><span class="fa fa-search"></span> Agregar camion proveedor</button>
                                           </div>
-                                          <div class="col-md-2">
+                                          <div class="col-lg-2 col-md-3">
 
                                               <button class="btn btn-success btn-flat btn-block" type="button" data-toggle="modal" data-target="#modal-CamionesPropios"><span class="fa fa-search"></span> Agregar camion propio</button>
                                           </div>

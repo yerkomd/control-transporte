@@ -273,77 +273,82 @@
             </div>
             <br></br>
           </form>
-          <div class="row ">
-            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12" id="GraficoDCamionesEmpresa">
-              <canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>
+          <hr style="border:2px;"></hr>
+          <div class="Reporte-camion hidden">
+            <div class="row">
+              <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12" id="GraficoDCamionesEmpresa">
+                <canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>
+              </div>
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                <table class="table tabla-gastos-categoria-camion">
+                  <thead>
+                    <tr>
+                      <th class="col-md-3 col-sm-4 col-xs-12">
+                        <p>Descripcion</p>
+                      </th>
+                      <th class="col-md-2 col-sm-2 col-xs-12">
+                        <p>Total</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="col-md-5 col-sm-6 col-xs-12">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th class="col-md-3 col-sm-4 col-xs-12"> <p>Descripcion</p></th>
-                    <th class="col-md-2 col-sm-2 col-xs-12"> <p>Total</p></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
+            <hr style="border:2px;"></hr>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Detalle de reporte </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
 
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                      </li>
+                    </ul>
 
-          </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div>
+                      <table id="tabla_detalle_camion" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Placa</th>
+                            <th>Fecha </th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descuento</th>
+                            <th>Ingreso</th>
+                            <th>Egreso</th>
+                            <th>Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Detalle de reporte </h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th colspan="6">Total</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </tfoot>
+                      </table>
 
-                    </li>
-                  </ul>
-
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div>
-                    <table id="tabla_detalle_camion" class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Placa</th>
-                          <th>Fecha </th>
-                          <th>Descripcion</th>
-                          <th>Precio</th>
-                          <th>Cantidad</th>
-                          <th>Descuento</th>
-                          <th>Ingreso</th>
-                          <th>Egreso</th>
-                          <th>Balance</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th colspan="6">Total</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </tfoot>
-                    </table>
-
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
       </div>
     </div>

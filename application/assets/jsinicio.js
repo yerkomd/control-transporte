@@ -291,6 +291,7 @@ $(document).ready(function () {
 				},
 				dataType: "json",
 				success: function (respuesta) {
+					$('.Reporte-camion').removeClass('hidden');
 					detalleCamionEmpresa = respuesta['detalleCamionEmpresa'];
 					resumenGastosCamion(respuesta['top5Gastos']);
 					balance = 0;
@@ -390,9 +391,30 @@ function GraficoMovimiento(Datos) {
 
 function resumenGastosCamion(datos) {
 	resetGraficoGastosCamion();
+	$('.tabla-gastos-categoria-camion tbody').empty();
+	tablaGastosCategoriaCamion(datos);
 	GraficoDoughnutsCamionesEmpresa(datos);
 }
+function tablaGastosCategoriaCamion(datos) {
 
+	// se obtiene el total de los gastos para poder sacar el % de los mismos.
+	total = 0;
+	for (let i = 0; i < datos.length; i++) {
+		total = total + parseFloat(datos[i].Egreso);
+	}
+	for (let i = 0; i < datos.length; i++) {
+		
+		porcentaje = (parseFloat(datos[i].Egreso) * 100) / total;
+		html = '<tr>';
+		html += '<th>'+ datos[i].Categoria +'</th>';
+		html += '<th>% '+ porcentaje.toFixed(2) +'</th>'
+		html +='</tr>';
+
+		$('.tabla-gastos-categoria-camion tbody').append(html);
+		
+	}
+
+}
 function GraficoDoughnutsCamionesEmpresa(datos) {
 	labels = Object.keys(datos).map(function (key) {
 		return datos[key].Categoria;
@@ -420,7 +442,7 @@ function GraficoDoughnutsCamionesEmpresa(datos) {
 			},
 			title: {
 				display: true,
-				text: 'Grafico de Gastos del camion'
+				text: 'Gastos por categoria'
 			},
 		},
 
