@@ -15,6 +15,7 @@ class Mantenimiento_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('categoria_mantenimiento');
+        $this->db->order_by('Nombre');
         return $this->db->get()->result();
     }
     public function guardarMantenimiento($datos)

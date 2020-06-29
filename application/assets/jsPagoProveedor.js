@@ -192,9 +192,9 @@ $(document).ready(function () {
 
 function LimpiarFormulario() {
 	$('#modal-Pagoproveedor').modal('hide');
-	$('#formPagoproveedor').trigger('reset');
 	$('.modal-title').text('Formulario transacciones de Proveedores');
 	$('#Descripcion').text('');
 	$("#ID_proveedor option:selected").removeAttr("selected");
+	$('#formPagoproveedor').trigger('reset');
 	opcion = '';
 };

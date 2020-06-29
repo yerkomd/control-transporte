@@ -291,7 +291,9 @@ $(document).ready(function () {
 				},
 				dataType: "json",
 				success: function (respuesta) {
+					$('.Reporte-camion').removeClass('hidden');
 					detalleCamionEmpresa = respuesta['detalleCamionEmpresa'];
+					resumenGastosCamion(respuesta['top5Gastos']);
 					balance = 0;
 					tablaDetalleCamion.clear();
 					for (let i = 0; i < detalleCamionEmpresa.length; i++) {
@@ -323,6 +325,11 @@ $(document).ready(function () {
 function resetGrafico() {
 	$('#GraficoM').remove(); // this is my <canvas> element
 	$('#GraficoMovimiento').append('<canvas id="GraficoM" ></canvas>');
+}
+
+function resetGraficoGastosCamion() {
+	$('#GraficoDoughnutsCamionesEmpresa').remove(); // this is my <canvas> element
+	$('#GraficoDCamionesEmpresa').append('<canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>');
 }
 
 function GenerarGraficoMovimiento(year) {
@@ -380,4 +387,64 @@ function GraficoMovimiento(Datos) {
 		}
 
 	});
+}
+
+function resumenGastosCamion(datos) {
+	resetGraficoGastosCamion();
+	$('.tabla-gastos-categoria-camion tbody').empty();
+	tablaGastosCategoriaCamion(datos);
+	GraficoDoughnutsCamionesEmpresa(datos);
+}
+function tablaGastosCategoriaCamion(datos) {
+
+	// se obtiene el total de los gastos para poder sacar el % de los mismos.
+	total = 0;
+	for (let i = 0; i < datos.length; i++) {
+		total = total + parseFloat(datos[i].Egreso);
+	}
+	for (let i = 0; i < datos.length; i++) {
+		
+		porcentaje = (parseFloat(datos[i].Egreso) * 100) / total;
+		html = '<tr>';
+		html += '<th>'+ datos[i].Categoria +'</th>';
+		html += '<th>% '+ porcentaje.toFixed(2) +'</th>'
+		html +='</tr>';
+
+		$('.tabla-gastos-categoria-camion tbody').append(html);
+		
+	}
+
+}
+function GraficoDoughnutsCamionesEmpresa(datos) {
+	labels = Object.keys(datos).map(function (key) {
+		return datos[key].Categoria;
+	});
+	Egreso = Object.keys(datos).map(function (key) {
+		return datos[key].Egreso;
+	});
+	var f = document.getElementById("GraficoDoughnutsCamionesEmpresa"),
+		i = {
+			labels: labels,
+			datasets: [{
+				data: Egreso,
+				backgroundColor: ["#BDC3C7", "#9B59B6", "#E74C3C", "#26B99A", "#3498DB"],
+				hoverBackgroundColor: ["#CFD4D8", "#B370CF", "#E95E4F", "#36CAAB", "#49A9EA"]
+			}]
+		};
+	new Chart(f, {
+		type: "doughnut",
+		tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+		data: i,
+		maintainAspectRatio: false,
+		options: {
+			legend: {
+				display: false,
+			},
+			title: {
+				display: true,
+				text: 'Gastos por categoria'
+			},
+		},
+
+	})
 }

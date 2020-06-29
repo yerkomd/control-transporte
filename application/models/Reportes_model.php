@@ -169,7 +169,7 @@ class Reportes_model extends CI_Model
     public function obtenerDetalleProveedor($ID_proveedor)
     {
         $this->db->select('*');
-        $this->db->from('detalleProveedor');
+        $this->db->from('detalleproveedor');
         $this->db->where('ID_proveedor', $ID_proveedor);
         $this->db->order_by('fecha');
         return $this->db->get()->result_array();
@@ -186,11 +186,43 @@ class Reportes_model extends CI_Model
     {
         $this->db->select('dc.*, t.Descripcion as TransporteDescripcion');
         $this->db->from('detalle_camiones_propio dc');
-        $this->db->join('transporte t','t.ID_transporte = dc.ID_transporte','left');
+        $this->db->join('transporte t', 't.ID_transporte = dc.ID_transporte', 'left');
         $this->db->where('dc.Fecha >=', $fechaIni);
         $this->db->where('dc.Fecha <=', $fechaFin);
         $this->db->where('dc.ID_camion', $ID_camion);
         $this->db->order_by('dc.Fecha');
         return $this->db->get()->result_array();
+    }
+    public function obtenerTop5GastosCamionEmpresa($ID_camion, $fechaIni, $fechaFin)
+    {
+   
+        $this->db->select('coalesce(c.nombre, "Gastos de transporte" ) as Categoria  ,sum(egreso) as Egreso');
+        $this->db->from('detalle_camiones_propio dc');
+        $this->db->join('categoria_mantenimiento c', 'dc.ID_categoria_mantenimiento = c.ID_categoria_mantenimiento', 'left');
+        $this->db->where('dc.Fecha >=', $fechaIni);
+        $this->db->where('dc.Fecha <=', $fechaFin);
+        $this->db->where('dc.ID_camion', $ID_camion);
+        $this->db->group_by('c.nombre');
+        $this->db->order_by('Egreso','DESC');
+        $this->db->limit(4);
+        $datos = $this->db->get()->result_array();
+
+        $this->db->select('sum(egreso) as Egreso_total');
+        $this->db->from('detalle_camiones_propio dc');
+        $this->db->where('dc.Fecha >=', $fechaIni);
+        $this->db->where('dc.Fecha <=', $fechaFin);
+        $this->db->where('dc.ID_camion', $ID_camion);
+        $totalGastos = $this->db->get()->row_array();
+        $saldoGastos = $totalGastos['Egreso_total'];
+        foreach ($datos as $row) {
+            $saldoGastos = $saldoGastos - $row['Egreso'];
+        }
+        $datos[] = array(
+            'Categoria' => 'Otros gastos',
+            'Egreso' => $saldoGastos,
+
+        );
+        return $datos;
+
     }
 }

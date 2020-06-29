@@ -190,9 +190,9 @@ $(document).ready(function () {
 
 function LimpiarFormulario() {
 	$('#modal-PagoTaller').modal('hide');
-	$('#formPagoTaller').trigger('reset');
 	$('.modal-title').text('Formulario transacciones de Taller');
 	$('#Descripcion').text('');
 	$("#ID_taller option:selected").removeAttr("selected");
+	$('#formPagoTaller').trigger('reset');
 	opcion = '';
 };

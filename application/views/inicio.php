@@ -90,12 +90,12 @@
                 </li>
                 <li role="tablaProdcutos" class=""><a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Proveedores</a>
                 </li>
-                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Cuentas de general</a>
+                <li role="tablaProdcutos" class=""><a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false">Cuentas camiones</a>
                 </li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                  <table class="table table-bordered" id="tablaDetalleCliente">
+                  <table class="table table-hover" id="tablaDetalleCliente">
                     <thead>
                       <tr>
                         <th>ID cliente</th>
@@ -138,7 +138,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                  <table class="table table-bordered" id="tablaDetalleProveedores">
+                  <table class="table table-hover" id="tablaDetalleProveedores">
                     <thead>
                       <tr>
                         <th>ID proveedor</th>
@@ -181,7 +181,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                  <table class="table table-bordered" id="tablaDetalleTaller">
+                  <table class="table table-hover" id="tablaDetalleTaller">
                     <thead>
                       <tr>
                         <th>ID cuenta</th>
@@ -259,69 +259,96 @@
                   <?php endforeach; ?>
                 </select>
               </div>
-              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right" required>Desde: </label>
+              <label for="fechaIni" class="col-md-1 col-xs-12 control-label text-right">Desde: </label>
               <div class="col-md-2 col-xs-12">
-                <input type="date" name="fechaIni" id="fechaIni" class="form-control">
+                <input type="date" name="fechaIni" id="fechaIni" class="form-control" required>
               </div>
-              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right" required>Hasta: </label>
+              <label for="fechaFin" class="col-md-1 col-xs-12 control-label text-right">Hasta: </label>
               <div class="col-md-2 col-xs-12">
-                <input type="date" name="fechaFin" id="fechaFin" class="form-control">
+                <input type="date" name="fechaFin" id="fechaFin" class="form-control" required>
               </div>
               <div class="col-md-1 col-xs-12">
                 <button type="submit" class="btn btn-block btn-success">Generar</button>
               </div>
             </div>
+            <br></br>
           </form>
+          <hr style="border:2px;"></hr>
+          <div class="Reporte-camion hidden">
+            <div class="row">
+              <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12" id="GraficoDCamionesEmpresa">
+                <canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>
+              </div>
+              <div class="col-md-5 col-sm-6 col-xs-12">
+                <table class="table tabla-gastos-categoria-camion">
+                  <thead>
+                    <tr>
+                      <th class="col-md-3 col-sm-4 col-xs-12">
+                        <p>Descripcion</p>
+                      </th>
+                      <th class="col-md-2 col-sm-2 col-xs-12">
+                        <p>Total</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Detalle de reporte </h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr style="border:2px;"></hr>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Detalle de reporte </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
 
-                    </li>
-                  </ul>
+                      </li>
+                    </ul>
 
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div>
-                    <table id="tabla_detalle_camion" class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Placa</th>
-                          <th>Fecha </th>
-                          <th>Descripcion</th>
-                          <th>Precio</th>
-                          <th>Cantidad</th>
-                          <th>Descuento</th>
-                          <th>Ingreso</th>
-                          <th>Egreso</th>
-                          <th>Balance</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div>
+                      <table id="tabla_detalle_camion" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Placa</th>
+                            <th>Fecha </th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descuento</th>
+                            <th>Ingreso</th>
+                            <th>Egreso</th>
+                            <th>Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
 
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th colspan="6" >Total</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-                      </tfoot>
-                    </table>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th colspan="6">Total</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </tfoot>
+                      </table>
 
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
       </div>
     </div>

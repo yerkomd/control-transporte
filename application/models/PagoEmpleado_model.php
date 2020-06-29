@@ -13,7 +13,8 @@ class PagoEmpleado_model extends CI_Model
         $this->db->join('persona', 'persona.ID_persona = empleado.ID_persona');
         $this->db->where('contrato.Estado', 'Activo');
         $this->db->where('empleado.Estado', 'Activo');
-
+        $this->db->order_by('Fecha','DESC');
+        $this->db->limit(500);
 
         $datos = $this->db->get();
 

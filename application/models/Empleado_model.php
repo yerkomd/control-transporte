@@ -1,12 +1,4 @@
 <?php
-class datos_Empleado
-{
-
-    function __construct()
-    {
-        parent::Model();
-    }
-}
 
 class Empleado_model extends CI_Model
 {
