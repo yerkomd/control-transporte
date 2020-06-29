@@ -1,7 +1,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            DataZoom - Control de transporte El OSO! <a href="http://www.datazoom.com.bo">DataZoom</a>
+            DataZoom - Control de transporte Melgar!
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -273,8 +273,8 @@
             </div>
             <br></br>
           </form>
-          <div class="row">
-            <div class="col-md-5 col-sm-6 col-xs-12">
+          <div class="row ">
+            <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12" id="GraficoDCamionesEmpresa">
               <canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
@@ -285,6 +285,11 @@
                     <th class="col-md-2 col-sm-2 col-xs-12"> <p>Total</p></th>
                   </tr>
                 </thead>
+                <tbody>
+                  <tr>
+
+                  </tr>
+                </tbody>
               </table>
             </div>
 

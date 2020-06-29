@@ -275,7 +275,6 @@ $(document).ready(function () {
 			title: 'Balance',
 		});
 	});
-	GraficoDoughnutsCamionesEmpresa();
 	$(document).on('submit', '#reporte-camion', function (e) {
 		e.preventDefault();
 		ID_camion = $.trim($('#camion').val());
@@ -293,6 +292,7 @@ $(document).ready(function () {
 				dataType: "json",
 				success: function (respuesta) {
 					detalleCamionEmpresa = respuesta['detalleCamionEmpresa'];
+					resumenGastosCamion(respuesta['top5Gastos']);
 					balance = 0;
 					tablaDetalleCamion.clear();
 					for (let i = 0; i < detalleCamionEmpresa.length; i++) {
@@ -324,6 +324,11 @@ $(document).ready(function () {
 function resetGrafico() {
 	$('#GraficoM').remove(); // this is my <canvas> element
 	$('#GraficoMovimiento').append('<canvas id="GraficoM" ></canvas>');
+}
+
+function resetGraficoGastosCamion() {
+	$('#GraficoDoughnutsCamionesEmpresa').remove(); // this is my <canvas> element
+	$('#GraficoDCamionesEmpresa').append('<canvas id="GraficoDoughnutsCamionesEmpresa"></canvas>');
 }
 
 function GenerarGraficoMovimiento(year) {
@@ -383,13 +388,23 @@ function GraficoMovimiento(Datos) {
 	});
 }
 
-function GraficoDoughnutsCamionesEmpresa() {
+function resumenGastosCamion(datos) {
+	resetGraficoGastosCamion();
+	GraficoDoughnutsCamionesEmpresa(datos);
+}
 
+function GraficoDoughnutsCamionesEmpresa(datos) {
+	labels = Object.keys(datos).map(function (key) {
+		return datos[key].Categoria;
+	});
+	Egreso = Object.keys(datos).map(function (key) {
+		return datos[key].Egreso;
+	});
 	var f = document.getElementById("GraficoDoughnutsCamionesEmpresa"),
 		i = {
-			labels: ["Dark Grey", "Purple Color", "Gray Color", "Green Color", "Blue Color"],
+			labels: labels,
 			datasets: [{
-				data: [120, 50, 140, 180, 100],
+				data: Egreso,
 				backgroundColor: ["#BDC3C7", "#9B59B6", "#E74C3C", "#26B99A", "#3498DB"],
 				hoverBackgroundColor: ["#CFD4D8", "#B370CF", "#E95E4F", "#36CAAB", "#49A9EA"]
 			}]
