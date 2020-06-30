@@ -42,7 +42,7 @@
                             <div class="x_content">
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="tablaTransporte">
+                                    <table class="table table-bordered table-condensed" id="tablaTransporte">
                                         <thead>
                                             <tr>
                                                 <th>ID Transporte</th>

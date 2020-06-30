@@ -28,13 +28,13 @@ if (isset($this->session->userdata['logged_in'])) {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha256-AIodEDkC8V/bHBkfyxzolUMw57jeQ9CauwhVW6YJ9CA=" crossorigin="anonymous" />
     <!-- <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
-     <!-- <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet"> -->
+    <!-- <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet"> -->
     <!-- DataTables -->
     <?php css('/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>
     <!-- bootstrap-progressbar -->
     <?php css('/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') ?>
     <!-- <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"> -->
-      <!-- <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/> -->
+    <!-- <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/> -->
     <!-- bootstrap-daterangepicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css" integrity="sha256-VVbO1uqtov1mU6f9qu/q+MfDmrqTfoba0rAE07szS20=" crossorigin="anonymous" />
     <!-- <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"> -->

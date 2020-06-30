@@ -104,7 +104,7 @@
                                           </div>
                                       </div>
                                       <br></br>
-                                      <table id="tablaDetalleTransporte" class="table table-bordered table-striped table-hover">
+                                      <table id="tablaDetalleTransporte" class="table table-bordered table-condensed table-striped table-hover">
                                           <thead>
                                               <tr>
                                                   <th>Nombre chofer</th>

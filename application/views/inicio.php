@@ -95,7 +95,7 @@
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                  <table class="table table-hover" id="tablaDetalleCliente">
+                  <table class="table table-hover jambo_table" id="tablaDetalleCliente">
                     <thead>
                       <tr>
                         <th>ID cliente</th>
@@ -138,7 +138,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                  <table class="table table-hover" id="tablaDetalleProveedores">
+                  <table class="table table-hover jambo_table" id="tablaDetalleProveedores">
                     <thead>
                       <tr>
                         <th>ID proveedor</th>
@@ -181,7 +181,7 @@
                   <!-- Tabla responsiva-->
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                  <table class="table table-hover" id="tablaDetalleTaller">
+                  <table class="table table-hover jambo_table" id="tablaDetalleTaller">
                     <thead>
                       <tr>
                         <th>ID cuenta</th>
@@ -314,7 +314,7 @@
                   </div>
                   <div class="x_content">
                     <div>
-                      <table id="tabla_detalle_camion" class="table table-bordered">
+                      <table id="tabla_detalle_camion" class="table table-bordered jambo_table">
                         <thead>
                           <tr>
                             <th>Placa</th>

@@ -9,8 +9,8 @@
 <br>
 </br>
 <div class="row">
-    <div class="col-xs-12">
-        <table class="table table-bordered">
+    <div class="table-responsive col-md-12 col-xs-12">
+        <table class="table table-bordered table-condensed">
             <thead>
                 <tr>
                     <th >Fecha</th>
