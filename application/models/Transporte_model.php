@@ -42,7 +42,7 @@ class Transporte_model extends CI_Model
     }
     public function guardarTransporte($datos)
     {
-        $this->db->insert('Transporte', $datos);
+        $this->db->insert('transporte', $datos);
         return $this->db->insert_id();
     }
     public function editarTransporte($ID_transporte, $datos)
