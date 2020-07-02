@@ -15,7 +15,7 @@ class Cliente extends BaseController
     public function ingresarCliente()
     {
         $this->form_validation->set_rules('Nombre', 'Nombre', 'trim|xss_clean');
-        $this->form_validation->set_rules('CI', 'CI', 'trim|xss_clean|is_unique[Cliente.CI]');
+        $this->form_validation->set_rules('CI', 'CI', 'trim|xss_clean|is_unique[cliente.CI]');
         $this->form_validation->set_rules('Apellidos', 'Apellidos', 'trim|xss_clean');
         $this->form_validation->set_rules('Direccion', 'Direccion', 'trim|xss_clean');
         $this->form_validation->set_rules('Telefono_01', 'Telefono_01', 'trim|xss_clean');
