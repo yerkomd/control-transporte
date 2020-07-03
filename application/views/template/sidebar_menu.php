@@ -49,7 +49,7 @@
 
                     </ul>
                   </li>
-                  <li><a><i class="fas fa-money"></i> Transporte<span class="fas fa-chevron-down"></span></a>
+                  <li><a><i class="fas fa-truck"></i> Transporte<span class="fas fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?php echo site_url("Transporte/transporte") ?>">Movimientos</a></li>
                     </ul>
@@ -61,6 +61,11 @@
                       <li><a href="<?php echo site_url("Pago_cuentas/pagoProveedores") ?>">Proveedores camiones</a></li>
                       <li><a href="<?php echo site_url("PagoEmpleados/pagoEmpleado") ?>">Pago empleados</a></li>
                       <li><a href="<?php echo site_url("Pago_cuentas/movimientoCajaEmpresa") ?>">Movimiento cuenta empresa</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fas fa-gears"></i> Configuracion de sistema<span class="fas fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo site_url("Usuario/usuario") ?>">Administracion de usuarios</a></li>
                     </ul>
                   </li>
               </div>
