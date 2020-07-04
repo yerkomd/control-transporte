@@ -18,7 +18,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <button class="btn btn-success" id='btn-nuevo' type="button" data-toggle="modal" data-target='#modal-PagoCliente'>Agregar</button>
+                                <button class="btn btn-success" id='btn-nuevo' type="button" data-toggle="modal" data-target='#modal-Usuarios'>Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Tabla de transacciones de clientes</h2>
+                                <h2>Tabla de usuarios</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -40,7 +40,7 @@
                             <div class="x_content">
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="tablaPagoCliente">
+                                    <table class="table table-bordered" id="tablaUsuarios">
                                         <thead>
                                             <tr>
                                                 <th>ID usuario</th>
@@ -82,54 +82,68 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="modal-PagoCliente">
+<div class="modal fade" id="modal-Usuarios">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Formulario transacciones de cliente</h4>
+                <h4 class="modal-title">Formulario de un nuevo usuario</h4>
             </div>
-            <form action="" id="formPagoCliente">
+            <form action="" id="formUsuarios" autocomplete="off">
                 <div class="modal-body">
 
                     <div class="error_formulario">
                     </div>
                     <div class="form-group">
-                        <label for="ID_Cliente" class="control-label">Cliente *:</label>
+                        <label class="control-label" for="username">Nombre de usuario <span class="required">*</span>
+                        </label>
                         <div class="">
-                            <select id="ID_Cliente" name="ID_Cliente" class="form-control" required='required'>
+                            <input type="text" autocomplete="nope" value="" id="username" maxlength="45" name="username" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group contrasena-antigua hide">
+                        <label class="control-label" for="password_actual">Contraseña actual <span class="required">*</span>
+                        </label>
+                        <div class="">
+                            <input type="password_actual" disabled autocomplete="nope" value="" id="password_actual" maxlength="45" name="password_actual" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Contraseña <span class="required">*</span>
+                        </label>
+                        <div class="">
+                            <input type="password" autocomplete="nope" value="" id="password" maxlength="45" name="password" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="privilegios" class="control-label">Privilegios *:</label>
+                        <div class="">
+                            <select id="privilegios" name="privilegios" class="form-control" required='required'>
                                 <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Operador">Operador</option>
+                                <option value="Empleado">Empleado</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Fecha">Fecha<span class="required">*</span>
+                        <label class="control-label" for="nombre">Nombre <span class="required">*</span>
                         </label>
                         <div class="">
-                            <input type="date" id="Fecha" value="<?php echo date('Y-m-d') ?>" name="Fecha" required="required" class="form-control col-md-7 col-xs-12">
+                            <input type="text" id="nombre" maxlength="45" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="Descripcion" class="control-label">Descripcion <span class="required">*</span>
+                        <label class="control-label" for="apellidos">Apellidos <span class="required">*</span>
                         </label>
                         <div class="">
-                            <textarea name="Descripcion" maxlength="100" id="Descripcion" class="form-control" rows="3" placeholder="Descripcion del movimiento" required="required"></textarea>
+                            <input type="text" id="apellidos" maxlength="45" name="apellidos" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="Debe">Debe<span class="required">*</span>
+                        <label class="control-label" for="CI">CI <span class="required">*</span>
                         </label>
                         <div class="">
-                            <input type="number" id="Debe" min="0" value="0" name="Debe" class="form-control col-md-7 col-xs-12">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="Haber">Haber<span class="required">*</span>
-                        </label>
-                        <div class="">
-                            <input type="number" id="Haber" min="0" value="0" name="Haber" class="form-control col-md-7 col-xs-12">
+                            <input type="number" id="CI" maxlength="7" minlength="7" name="CI" required="required" class="form-control col-md-7 col-xs-12" placeholder="Número de Carnet de Identidad">
                         </div>
                     </div>
 
