@@ -32,17 +32,19 @@ $(document).ready(function () {
 	});
 	$(document).on('click', '#btn-editar', function () {
 		fila = $(this).closest('tr');
-		ID_pago_cuentas = parseInt(fila.find('td:eq(0)').text());
+		ID_user = parseInt(fila.find('td:eq(0)').text());
 		$('.modal-title').text('Formulario transacciones de Taller EDITAR');
-		$('#modal-PagoTaller').modal('show');
+		$('#modal-Usuarios').modal('show');
 		$.ajax({
 			type: "POST",
-			url: base_url + "/Pago_cuentas/obtenerPagoTaller",
+			url: base_url + "/Usuario/obtenerUsuario",
 			data: {
-				ID_pago_cuentas: ID_pago_cuentas
+				ID_user: ID_user
 			},
 			dataType: "json",
 			success: function (respuesta) {
+				$('.contrasena-antigua').removeClass('hide');
+				$('#password-actual').removeAttr('disable');
 				$("#ID_taller option[value=" + respuesta['ID_taller'] + "]").attr("selected", true);
 				$('#Fecha').val(respuesta['fecha']);
 				$('#Descripcion').text(respuesta['Descripcion']);
@@ -56,36 +58,37 @@ $(document).ready(function () {
 	$('#formUsuarios').submit(function (e) {
 		e.preventDefault();
 
-		ID_taller = $.trim($('#ID_taller').val());
-		Fecha = $.trim($('#Fecha').val());
-		Descripcion = $.trim($('#Descripcion').val());
-		Debe = $.trim($('#Debe').val());
-		Haber = $.trim($('#Haber').val());
+		username = $.trim($('#username').val());
+		password_actual = $.trim($('#password_actual').val());
+		password = $.trim($('#password').val());
+		privilegios = $.trim($('#privilegios').val());
+		nombre = $.trim($('#nombre').val());
+		apellidos = $.trim($('#apellidos').val());
+		CI = $.trim($('#CI').val());
 		$('#modal-Usuarios').modal('hide');
 
 		if (opcion != 'editar') {
 			$.ajax({
 				type: "POST",
-				url: base_url + "/Pago_cuentas/ingresarPagoTaller",
+				url: base_url + "/Usuario/ingresarUsuario",
 				data: {
-					ID_taller: ID_taller,
-					Fecha: Fecha,
-					Descripcion: Descripcion,
-					Debe: Debe,
-					Haber: Haber,
+					username: username,
+					password: password,
+					privilegios: privilegios,
+					nombre: nombre,
+					apellidos: apellidos,
+					CI: CI,
 				},
 				dataType: "json",
 				success: function (respuesta) {
 					if (respuesta['respuesta'] === 'Exitoso') {
-						ID_pago_cuentas = respuesta['datos']['ID_pago_cuentas'];
-						Fecha = respuesta['datos']['Fecha'];
-						Nombre = respuesta['datos']['NombreTaller'];
-						Departamento = respuesta['datos']['Departamento'];
-						Direccion = respuesta['datos']['Direccion'];
-						Descripcion = respuesta['datos']['Descripcion'];
-						Debe = respuesta['datos']['Debe'];
-						Haber = respuesta['datos']['Haber'];
-						tabla.row.add([ID_pago_cuentas, Fecha, Nombre, Departamento, Direccion, Descripcion, Debe, Haber]).draw();
+						ID_user = respuesta['datos']['ID_user'];
+						username = respuesta['datos']['username'];
+						privilegios = respuesta['datos']['privilegios'];
+						nombre = respuesta['datos']['nombre'];
+						apellidos = respuesta['datos']['apellidos'];
+						CI = respuesta['datos']['CI'];
+						tabla.row.add([ID_user, username, privilegios, nombre, apellidos, CI]).draw();
 						LimpiarFormulario();
 						swal({
 							title: 'Guardar',
@@ -107,7 +110,7 @@ $(document).ready(function () {
 		} else {
 			$.ajax({
 				type: "POST",
-				url: base_url + "/Pago_cuentas/editarPagoTaller",
+				url: base_url + "/Usuario/editarUsuario",
 				data: {
 					ID_pago_cuentas: ID_pago_cuentas,
 					ID_taller: ID_taller,
@@ -192,7 +195,9 @@ function LimpiarFormulario() {
 	$('#modal-Usuarios').modal('hide');
 	$('.modal-title').text('Formulario de un nuevo usuario');
 	$('#Descripcion').text('');
-	$("#ID_taller option:selected").removeAttr("selected");
+	$("#privilegios option:selected").removeAttr("selected");
+	$('.contrasena-antigua').addClass('hide');
+	$('#password-actual').attr('disable');
 	$('#formPagoTaller').trigger('reset');
 	opcion = '';
 };
