@@ -30,26 +30,33 @@ $(document).ready(function () {
 	$('#btn-cerrar').on('click', function () {
 		LimpiarFormulario();
 	});
+	$('#btn-nuevo').on('click', function () {
+		LimpiarFormulario();
+		$('#modal-Usuarios').modal('show');
+	});
 	$(document).on('click', '#btn-editar', function () {
+		LimpiarFormulario();
 		fila = $(this).closest('tr');
 		ID_user = parseInt(fila.find('td:eq(0)').text());
-		$('.modal-title').text('Formulario transacciones de Taller EDITAR');
+		$('.modal-title').text('Formulario usuario EDITAR');
+		$('.contrasena-antigua').removeClass('hide');
+		$('#password_actual').prop('disabled',false);
+		$('#password').prop('required',false);
 		$('#modal-Usuarios').modal('show');
 		$.ajax({
 			type: "POST",
-			url: base_url + "/Usuario/obtenerUsuario",
+			url: base_url + "/Usuario/obtenerUsuarioAjax",
 			data: {
 				ID_user: ID_user
 			},
 			dataType: "json",
 			success: function (respuesta) {
-				$('.contrasena-antigua').removeClass('hide');
-				$('#password-actual').removeAttr('disable');
-				$("#ID_taller option[value=" + respuesta['ID_taller'] + "]").attr("selected", true);
-				$('#Fecha').val(respuesta['fecha']);
-				$('#Descripcion').text(respuesta['Descripcion']);
-				$('#Debe').val(respuesta['Debe']);
-				$('#Haber').val(respuesta['Haber']);
+
+				$('#username').val(respuesta['username']);			
+				$("#privilegios option[value=" + respuesta['privilegios'] + "]").attr("selected", true);
+				$('#nombre').val(respuesta['nombre']);
+				$('#apellidos').val(respuesta['apellidos']);
+				$('#CI').val(respuesta['CI']);
 
 			}
 		});
@@ -92,7 +99,7 @@ $(document).ready(function () {
 						LimpiarFormulario();
 						swal({
 							title: 'Guardar',
-							text: respuesta['message'],
+							text: respuesta['respuesta'],
 							type: 'success'
 						});
 
@@ -100,7 +107,7 @@ $(document).ready(function () {
 						LimpiarFormulario();
 						swal({
 							title: 'Error',
-							text: respuesta['message'],
+							text: respuesta['respuesta'],
 							type: 'error'
 						});
 					}
@@ -112,17 +119,18 @@ $(document).ready(function () {
 				type: "POST",
 				url: base_url + "/Usuario/editarUsuario",
 				data: {
-					ID_pago_cuentas: ID_pago_cuentas,
-					ID_taller: ID_taller,
-					Fecha: Fecha,
-					Descripcion: Descripcion,
-					Debe: Debe,
-					Haber: Haber,
+					ID_user         : ID_user,
+					username        : username,
+					password_actual : password_actual,
+					password        : password,
+					privilegios     : privilegios,
+					nombre          : nombre,
+					apellidos       : apellidos,
+					CI              : CI,
 				},
 				dataType: "json",
 				success: function (respuesta) {
 					if (respuesta['respuesta'] === 'Exitoso') {
-
 						Fecha = respuesta['datos']['Fecha'];
 						Nombre = respuesta['datos']['NombreTaller'];
 						Departamento = respuesta['datos']['Departamento'];
@@ -131,11 +139,11 @@ $(document).ready(function () {
 						Debe = respuesta['datos']['Debe'];
 						Haber = respuesta['datos']['Haber'];
 						LimpiarFormulario();
-						tabla.row(fila).data([ID_pago_cuentas, Fecha, Nombre, Departamento, Direccion, Descripcion, Debe, Haber]).draw();
+						tabla.row(fila).data([ID_user, username, privilegios, nombre, apellidos, CI]).draw();
 
 						swal({
 							title: 'Editado',
-							text: respuesta['message'],
+							text: respuesta['respuesta'],
 							type: 'success'
 						});
 						$('#formEmpleados').trigger('reset');
@@ -143,7 +151,7 @@ $(document).ready(function () {
 						LimpiarFormulario();
 						swal({
 							title: 'Error',
-							text: respuesta['message'],
+							text: respuesta['respuesta'],
 							type: 'error'
 						});
 					}
@@ -197,7 +205,8 @@ function LimpiarFormulario() {
 	$('#Descripcion').text('');
 	$("#privilegios option:selected").removeAttr("selected");
 	$('.contrasena-antigua').addClass('hide');
-	$('#password-actual').attr('disable');
-	$('#formPagoTaller').trigger('reset');
+	$('#password_actual').prop('disabled',true);
+	$('#password').prop('required',true);
+	$('#formUsuarios').trigger('reset');
 	opcion = '';
 };

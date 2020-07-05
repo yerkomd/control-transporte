@@ -18,7 +18,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <button class="btn btn-success" id='btn-nuevo' type="button" data-toggle="modal" data-target='#modal-Usuarios'>Agregar</button>
+                                <button class="btn btn-success" id='btn-nuevo' type="button" >Agregar</button>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <label class="control-label" for="password_actual">Contraseña actual <span class="required">*</span>
                         </label>
                         <div class="">
-                            <input type="password_actual" disabled autocomplete="nope" value="" id="password_actual" maxlength="45" name="password_actual" required="required" class="form-control col-md-7 col-xs-12">
+                            <input type="password" disabled autocomplete="nope" value="" id="password_actual" maxlength="45" name="password_actual" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                     </div>
                     <div class="form-group">
